@@ -1,0 +1,5 @@
+*/privateGPT/*
+*/dev-notebooks/*
+*/models/*
+*.gguf
+*.pdf
