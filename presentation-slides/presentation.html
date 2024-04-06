@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Presentation</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+        class: center, middle
+
+        # Getting Started with Llama2
+        ## Lucas Soares
+        ### 05-02-2023
+
+        ---
+
+        # Intro
+        ## Hi!
+        ### Intro
+        2024-04-05-16-33-02.png
+
+        ---
+
+        # Interactive Methodology for this Live-Training
+
+
+        ---
+
+        # Large Language Models
+        ## A definition
+        ### Large Language Models
+        2024-04-05-16-33-39.png
+
+        ---
+
+        # Large Language Models
+        ## As Probability Distributions
+        ### At their core, LLMs can be seen as distributions over words.
+        2024-04-05-16-34-01.png
+
+        ---
+
+        # Large Language Models
+        ## As Probability Distributions
+        ### - At their core, LLMs can be seen as distributions over words.
+        ### - Use statistical models to capture patterns in text data.
+
+
+        ---
+
+        # Large Language Models
+        ## As Probability Distributions
+        ### - At their core, LLMs can be seen as distributions over words.
+        ### - Use statistical models to capture patterns in text data.
+        ### - They calculate the likelihood of each word occurring given the context.
+        #### - Probability Distribution over the Next Word: "I love eating…." ? ?
+        2024-04-05-16-34-30.png
+
+        ---
+
+        # How LLMs work
+        ## Transformers Architecture
+        ### - Traditional sequential models struggle with context (Vaswani et al 2017)
+        ### - Transformers use attention mechanisms to capture global dependencies.
+
+        ---
+
+        # Introduction to Llama2
+        ## Prompt Engineering with Llama2
+        ### 1. Query Your docs Locally
+        ### 2. Fine Tune Your Llama2 Model
+        2024-04-05-16-34-45.png
+
+        ---
+
+        # Introduction to Llama2
+        ## 1
+        ### - LLM Released by Meta in July of 2023
+        ### - Open source with a Comercial license
+        [Meta Llama2 Resources](https://ai.meta.com/llama/#resources)
+        2024-04-05-16-35-09.png
+
+
+        ---
+
+        # Introduction to Llama2
+        ## What, why & how Llama2?
+        ### - Llama2 is OPEN SOURCE
+        ### - Benefits of Large Language Models
+        2024-04-05-16-35-24.png
+
+
+        ---
+
+        # Comes in 3 different sizes: 
+        ## 7b, 13B & 70B parameters
+        ### - Introduction to Llama2
+        ### - Llama2 is OPEN SOURCE
+        2024-04-05-16-35-36.png
+
+        ---
+
+        # Comes in 3 different sizes: 
+        ## 7b, 13B & 70B parameters
+        ### - Data: Trained on 2 trillion tokens of text data
+        ### - Benefits of Large Language Models
+        2024-04-05-16-36-09.png
+
+        ---
+
+        # Comes in 3 different sizes: 
+        ## 7b, 13B & 70B parameters
+        ### - Context Window: 4096 tokens
+        ### - Data: Trained on 2 trillion tokens of text data
+        2024-04-05-16-36-18.png
+
+        ---
+
+        # Comes in 3 different sizes: 
+        ## 7b, 13B & 70B parameters
+        ### - Context Window: 4096 tokens
+        ### - Safety & Helpfulness
+        ### - Benefits of Large Language Models
+        2024-04-05-16-36-28.png
+
+
+        ---
+
+        # Introduction to Llama2
+        ## What, why & how Llama2?
+        ### [Research Paper](https://arxiv.org/pdf/2307.09288.pdf)
+        2024-04-05-16-36-37.png
+
+        ---
+
+        # Introduction to Llama2
+        ## Notebook demo
+        ### Benefits of Large Language Models
+
+
+        ---
+
+        # Q&A / Break
+
+        ---
+
+        # Prompt Engineering Guide
+        ## What is prompt engineering?
+        ### - Discipline for engineering prompts
+        ### - Designing good prompts
+
+        ---
+
+        # Prompt Engineering Guide
+        ## OpenAI’s Guide for Building Good Prompts
+        ### - Strategy 1: Write clear instructions
+
+        ---
+
+        # Prompt Engineering Guide
+        ## OpenAI’s Guide for Building Good Prompts
+        ### - Strategy 2: Provide reference text
+
+        ---
+
+        # Prompt Engineering Guide
+        ## OpenAI’s Guide for Building Good Prompts
+        ### - Strategy 3: Break tasks into subtasks
+        2024-04-05-16-37-03.png
+
+        ---
+
+        # Prompt Engineering Guide
+        ## OpenAI’s Guide for Building Good Prompts
+        ### - Strategy 4: Give the model time to think
+
+        ---
+
+        # Prompt Engineering Guide
+        ## OpenAI’s Guide for Building Good Prompts
+        ### - Strategy 5: Use external tools
+
+        ---
+
+        # Prompt Engineering Guide
+        ## OpenAI’s Guide for Building Good Prompts
+        ### - Strategy 6: Test changes systematically
+
+        ---
+
+        # Q&A / Break
+
+        ---
+
+        # Query Your Docs Locally with Llama2
+        ## - Private Q&As with docs using Llama2
+        ## - Need for LLMs with access to context-relevant data
+        2024-04-05-16-37-24.png
+
+        ---
+
+        # LLM
+        ## Query Your Docs Locally with Llama2
+        ### - What & Why RAGs?
+        ### - RAG - Retrieval Augmented Generation
+        2024-04-05-16-38-21.png
+        2024-04-05-16-37-36.png
+
+        ---
+
+        # LLMs have a limited context length
+        ## Query Your Docs Locally with Llama2
+        ### - RAG - Retrieval Augmented Generation
+        ### - Langchain for LLM App Development
+        2024-04-05-16-37-49.png
+
+        ---
+
+        # Embeddings
+        ## Query Your Docs Locally with Llama2
+        ### - Capture content and meaning
+        ### - RAG - Retrieval Augmented Generation
+        2024-04-05-16-38-31.png
+        2024-04-05-16-38-57.png
+
+        ---
+
+        # Query Your Docs Locally with Llama2
+        ## - Private Q&As with docs using Llama2
+        ## - RAG - Retrieval Augmented Generation
+        ### - Query
+        ### - Vector Database
+
+        ---
+
+        # Q&A / Break
+
+        ---
+
+        # Q&A Tech Friction of Access
+        ## Query Your Docs Locally with Llama2
+        ### - Framework for RAG Systems
+        ### - Friction of Access
+        2024-04-05-16-39-28.png
+
+
+        ---
+
+        # Q&A Tech Friction of Access
+        ## - OpenAI,ChatPDF, Hugging Face, h20GPT, PrivateGPT, LocalGPT, Langchain, Llama-index
+        <img src=""
+
+        ---
+
+        # Query Your Docs Locally with Llama2
+        ## Framework for RAG Systems
+        ### [Langchain for LLM App Development](https://python.langchain.com/docs/use_cases/question_answering/)
+
+        ---
+
+        # Load Document
+        ## Query Your Docs Locally with Llama2
+        ### - Chunk, Split, Process
+        ### - Vectorise, index
+
+        ---
+
+        # Q&A / Break
+
+        ---
+
+        # What is Fine Tuning?
+        ## Fine Tuning Llama2
+        ### - What, why & how.
+        ### - [Why Fine Tune?](https://www.youtube.com/watch?v=g68qlo9Izf0&t=2935s)
+
+        ---
+
+        # Problem - Loading Params
+        ## Fine Tuning Llama2
+        ### - Solution - Half Precision
+        ### - Solution - Quantization
+
+        ---
+
+        # Problem - Loading Optimizer States
+        ## Fine Tuning Llama2
+        ### - Solution - LoRA, QLora
+
+        ---
+
+        # Notebook demo
+        ## Langchain for LLM App Development
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
