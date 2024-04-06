@@ -1,2 +1,5 @@
 jupyter
-jupyter
+llama-cpp-python
+langchain
+huggingface-cli
+ollama
