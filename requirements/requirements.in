@@ -3,3 +3,7 @@ llama-cpp-python
 langchain
 huggingface-cli
 ollama
+pypdf
+sentence-transformers
+chromadb
+llama-index
