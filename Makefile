@@ -2,9 +2,6 @@
 ENV_NAME ?= oreilly-llama2
 PYTHON_VERSION ?= 3.10
 
-# Default action when just 'make' is typed
-all: repo-setup conda-create
-
 repo-setup:
 	mkdir -p requirements
 	touch requirements/requirements.in
@@ -20,7 +17,6 @@ conda-create:
 pip-tools-setup:
 	pip install uv
 	uv pip install pip-tools setuptools
-	"pip-tools setup complete"
 
 env-update:
 	uv pip compile ./requirements/requirements.in -o ./requirements/requirements.txt

@@ -7,3 +7,5 @@ pypdf
 sentence-transformers
 chromadb
 llama-index
+llama-index-llms-ollama
+ctransformers
