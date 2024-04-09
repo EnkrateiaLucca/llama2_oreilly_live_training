@@ -8,4 +8,7 @@ sentence-transformers
 chromadb
 llama-index
 llama-index-llms-ollama
+llama-index-llms-huggingface
 ctransformers
+bitsandbytes
+accelerate
