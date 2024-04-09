@@ -1,0 +1,8 @@
+headers-kv ::= "\"headers\"" space ":" space string
+root ::= "{" space title-kv "," space headers-kv "}" space
+space ::= " "?
+string ::=  "\"" (
+        [^"\\] |
+        "\\" (["\\/bfnrt] | "u" [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F])
+      )* "\"" space
+title-kv ::= "\"title\"" space ":" space string

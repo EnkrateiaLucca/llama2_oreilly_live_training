@@ -1,0 +1,1 @@
+{"properties": {"tools_resources": {"description": "Tools and resources mentioned in the article", "title": "Tools Resources", "type": "string"}}, "required": ["tools_resources"], "title": "TechnicalArticle", "type": "object"}

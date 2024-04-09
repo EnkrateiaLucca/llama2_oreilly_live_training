@@ -1,0 +1,28 @@
+The article provides a comprehensive overview of the quantization process, a technique used to reduce the computational and memory requirements of running machine learning models, particularly during inference. Quantization achieves this by representing weights and activations in lower-precision data types, such as 8-bit integers (int8), instead of the standard 32-bit floating point (float32). This process not only reduces memory usage and power consumption but also enables faster operations due to the efficiency of integer arithmetic and facilitates deployment on embedded devices which may only support integer data types.
+
+### Key Concepts and Steps in Quantization:
+
+- **Basic Theory**: Quantization involves transitioning from high-precision (e.g., float32) to lower-precision (e.g., int8 or float16) data types. This transition requires careful consideration of the accumulation data type to prevent significant precision loss.
+
+- **Quantization to float16**: This process is relatively straightforward due to the similarity in representation between float32 and float16. Key considerations include hardware support, the availability of a float16 implementation for specific operations, and sensitivity to precision loss.
+
+- **Quantization to int8**: This is more complex due to the limited range of values that int8 can represent. The affine quantization scheme is commonly used, involving a scale (S) and a zero-point (Z) to map float32 values to the int8 space.
+
+- **Symmetric vs. Affine Quantization**: These are two quantization schemes, with symmetric quantization being a special case where the range of float values is symmetric around zero, potentially leading to optimizations.
+
+- **Per-tensor and Per-channel Quantization**: These approaches vary in the granularity of quantization, impacting the balance between accuracy and memory usage.
+
+- **Calibration**: This step involves determining the range of float32 values to be quantized, which can be performed dynamically at runtime or statically using representative data.
+
+- **Practical Quantization Steps**: These include selecting operations to quantize, applying dynamic or static post-training quantization, choosing a calibration technique, converting the model, and evaluating performance.
+
+### Supported Tools in 🤗 Optimum for Quantization:
+
+- `optimum.onnxruntime`: Facilitates quantization and execution of ONNX models using ONNX Runtime.
+- `optimum.intel`: Enables quantization of Transformer models while considering accuracy and latency, specifically for Intel hardware.
+- `optimum.fx`: Provides a lower-level API for graph-mode quantization of Transformer models in PyTorch, offering more flexibility.
+- `optimum.gptq`: Specialized for quantizing and running Large Language Models (LLMs) with GPTQ.
+
+The article also delves into how computers represent numbers, differentiating between integer and real number representations, which underpins the quantization process.
+
+Since the article is conceptual and does not include specific code examples, there's no direct code summary to provide. However, for practical implementation, one would typically use the APIs and tools mentioned above according to the specific requirements and steps outlined in the quantization process.
