@@ -40,7 +40,7 @@ Repository for the oreilly live training course: "Getting Started with Llama2": 
 3. **Install Dependencies from `requirements.txt`:**
     ```bash
     pip install python-dotenv
-    pip install -r requirements.txt
+    pip install -r requirements/requirements.txt
     ```
 
 4. Setup your openai [API key](https://platform.openai.com/)
@@ -57,7 +57,7 @@ deactivate
 ## To use this Environment with Jupyter Notebooks:
 
 - ```pip install jupyter```
-- ```python3 -m ipykernel install --user --name=oreilly-env```
+- ```python3 -m ipykernel install --user --name=oreilly-llama2```
 
 
 ## Notebooks
