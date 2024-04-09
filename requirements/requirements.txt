@@ -290,6 +290,7 @@ langchain-core==0.1.40
     #   langchain-text-splitters
 langchain-text-splitters==0.0.1
     # via langchain
+langchainhub==0.1.15
 langsmith==0.1.40
     # via
     #   langchain
@@ -637,6 +638,7 @@ requests==2.31.0
     #   kubernetes
     #   langchain
     #   langchain-community
+    #   langchainhub
     #   langsmith
     #   llama-index-core
     #   llama-index-legacy
@@ -788,6 +790,8 @@ typer==0.12.1
     # via chromadb
 types-python-dateutil==2.9.0.20240316
     # via arrow
+types-requests==2.31.0.20240406
+    # via langchainhub
 typing-extensions==4.11.0
     # via
     #   anyio
@@ -822,6 +826,7 @@ urllib3==2.2.1
     # via
     #   kubernetes
     #   requests
+    #   types-requests
 uvicorn==0.29.0
     # via chromadb
 uvloop==0.19.0

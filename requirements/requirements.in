@@ -12,3 +12,4 @@ llama-index-llms-huggingface
 ctransformers
 bitsandbytes
 accelerate
+langchainhub
