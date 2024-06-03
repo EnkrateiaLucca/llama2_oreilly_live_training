@@ -8,8 +8,8 @@ Repository for the oreilly live training course: "Getting Started with Llama3": 
 
 - Install [anaconda](https://www.anaconda.com/download)
 - This repo was tested on a Mac with python=3.10.
-- Create an environment: `conda create -n oreilly-llama2 python=3.10`
-- Activate your environment with: `conda activate oreilly-llama2`
+- Create an environment: `conda create -n oreilly-llama3 python=3.10`
+- Activate your environment with: `conda activate oreilly-llama3`
 - Install requirements with: `pip install -r requirements/requirements.txt`
 - Setup your openai [API key](https://platform.openai.com/)
 
@@ -20,21 +20,21 @@ Repository for the oreilly live training course: "Getting Started with Llama3": 
     Navigate to your project directory. Make sure you hvae python3.10 installed!
     If using Python 3's built-in `venv`:
     ```bash
-    python -m venv oreilly-llama2
+    python -m venv oreilly-llama3
     ```
     If you're using `virtualenv`:
     ```bash
-    virtualenv oreilly-llama2
+    virtualenv oreilly-llama3
     ```
 
 2. **Activate the Virtual Environment:**
     - **On Windows:**
       ```bash
-      .\oreilly-llama2\Scripts\activate
+      .\oreilly-llama3\Scripts\activate
       ```
     - **On macOS and Linux:**
       ```bash
-      source oreilly-llama2/bin/activate
+      source oreilly-llama3/bin/activate
       ```
 
 3. **Install Dependencies from `requirements.txt`:**
@@ -57,7 +57,7 @@ deactivate
 ## To use this Environment with Jupyter Notebooks:
 
 - ```pip install jupyter```
-- ```python3 -m ipykernel install --user --name=oreilly-llama2```
+- ```python3 -m ipykernel install --user --name=oreilly-llama3```
 
 
 ## Notebooks
