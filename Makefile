@@ -1,5 +1,5 @@
 # Default environment name and Python version
-ENV_NAME ?= oreilly-llama2
+ENV_NAME ?= oreilly-llama3
 PYTHON_VERSION ?= 3.10
 
 repo-setup:

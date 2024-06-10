@@ -1,6 +1,7 @@
 jupyter
 llama-cpp-python
 langchain
+langchain-experimental
 huggingface-cli
 ollama
 pypdf
