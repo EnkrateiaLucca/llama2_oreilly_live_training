@@ -89,8 +89,12 @@ comm==0.2.2
     # via
     #   ipykernel
     #   ipywidgets
+contourpy==1.2.1
+    # via matplotlib
 ctransformers==0.2.27
     # via -r ./requirements/requirements.in
+cycler==0.12.1
+    # via matplotlib
 dataclasses-json==0.6.4
     # via
     #   langchain
@@ -136,6 +140,8 @@ filelock==3.13.3
     #   transformers
 flatbuffers==24.3.25
     # via onnxruntime
+fonttools==4.53.0
+    # via matplotlib
 fqdn==1.5.1
     # via jsonschema
 frozenlist==1.4.1
@@ -293,6 +299,8 @@ jupyterlab-server==2.25.4
     #   notebook
 jupyterlab-widgets==3.0.10
     # via ipywidgets
+kiwisolver==1.4.5
+    # via matplotlib
 kubernetes==29.0.0
     # via chromadb
 langchain==0.1.14
@@ -396,6 +404,8 @@ markupsafe==2.1.5
     #   nbconvert
 marshmallow==3.21.1
     # via dataclasses-json
+matplotlib==3.9.0
+    # via -r ./requirements/requirements.in
 matplotlib-inline==0.1.6
     # via
     #   ipykernel
@@ -452,11 +462,13 @@ numpy==1.26.4
     #   accelerate
     #   chroma-hnswlib
     #   chromadb
+    #   contourpy
     #   langchain
     #   langchain-community
     #   llama-cpp-python
     #   llama-index-core
     #   llama-index-legacy
+    #   matplotlib
     #   onnxruntime
     #   pandas
     #   scikit-learn
@@ -532,6 +544,7 @@ packaging==23.2
     #   jupyterlab-server
     #   langchain-core
     #   marshmallow
+    #   matplotlib
     #   nbconvert
     #   onnxruntime
     #   qtconsole
@@ -550,6 +563,7 @@ pexpect==4.9.0
 pillow==10.3.0
     # via
     #   llama-index-core
+    #   matplotlib
     #   sentence-transformers
 platformdirs==4.2.0
     # via jupyter-core
@@ -611,6 +625,8 @@ pymupdf==1.24.1
     # via llama-index-readers-file
 pymupdfb==1.24.1
     # via pymupdf
+pyparsing==3.1.2
+    # via matplotlib
 pypdf==4.1.0
     # via
     #   -r ./requirements/requirements.in
@@ -624,6 +640,7 @@ python-dateutil==2.9.0.post0
     #   arrow
     #   jupyter-client
     #   kubernetes
+    #   matplotlib
     #   pandas
     #   posthog
 python-dotenv==1.0.1

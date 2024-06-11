@@ -18,3 +18,4 @@ tavily-python
 gpt4all
 langgraph
 langchain-groq
+matplotlib
