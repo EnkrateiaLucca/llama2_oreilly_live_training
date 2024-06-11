@@ -149,6 +149,8 @@ google-auth==2.29.0
     # via kubernetes
 googleapis-common-protos==1.63.0
     # via opentelemetry-exporter-otlp-proto-grpc
+gpt4all==2.7.0
+    # via -r ./requirements/requirements.in
 greenlet==3.0.3
     # via sqlalchemy
 grpcio==1.62.1
@@ -293,17 +295,20 @@ langchain==0.1.14
     #   langchain-experimental
 langchain-community==0.0.31
     # via langchain
-langchain-core==0.1.40
+langchain-core==0.1.52
     # via
     #   langchain
     #   langchain-community
     #   langchain-experimental
     #   langchain-text-splitters
+    #   langgraph
 langchain-experimental==0.0.56
     # via -r ./requirements/requirements.in
 langchain-text-splitters==0.0.1
     # via langchain
 langchainhub==0.1.15
+    # via -r ./requirements/requirements.in
+langgraph==0.0.51
     # via -r ./requirements/requirements.in
 langsmith==0.1.40
     # via
@@ -654,6 +659,7 @@ regex==2023.12.25
 requests==2.31.0
     # via
     #   chromadb
+    #   gpt4all
     #   huggingface-hub
     #   jupyterlab-server
     #   kubernetes
@@ -665,6 +671,7 @@ requests==2.31.0
     #   llama-index-legacy
     #   posthog
     #   requests-oauthlib
+    #   tavily-python
     #   tiktoken
     #   transformers
 requests-oauthlib==2.0.0
@@ -735,6 +742,8 @@ sympy==1.12
     # via
     #   onnxruntime
     #   torch
+tavily-python==0.3.3
+    # via -r ./requirements/requirements.in
 tenacity==8.2.3
     # via
     #   chromadb
@@ -753,6 +762,7 @@ tiktoken==0.6.0
     # via
     #   llama-index-core
     #   llama-index-legacy
+    #   tavily-python
 tinycss2==1.2.1
     # via nbconvert
 tokenizers==0.15.2
@@ -781,6 +791,7 @@ tornado==6.4
 tqdm==4.66.2
     # via
     #   chromadb
+    #   gpt4all
     #   huggingface-hub
     #   llama-index-core
     #   nltk
@@ -821,6 +832,7 @@ typing-extensions==4.11.0
     #   async-lru
     #   chromadb
     #   fastapi
+    #   gpt4all
     #   huggingface-hub
     #   ipython
     #   llama-cpp-python
@@ -849,6 +861,8 @@ urllib3==2.2.1
     #   kubernetes
     #   requests
     #   types-requests
+uuid6==2024.1.12
+    # via langgraph
 uvicorn==0.29.0
     # via chromadb
 uvloop==0.19.0

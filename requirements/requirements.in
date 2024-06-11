@@ -14,3 +14,6 @@ ctransformers
 bitsandbytes
 accelerate
 langchainhub
+tavily-python
+gpt4all
+langgraph
