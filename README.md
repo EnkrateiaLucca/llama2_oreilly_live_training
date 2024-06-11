@@ -76,9 +76,9 @@ Here are the notebooks available in the `notebooks/` folder:
 
    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/1.2-ollama_quick_setup.ipynb)
 
-4. [Query Docs with Llama 2](notebooks/3.0-ls-Query-Docs-Llama2.ipynb)
+4. [Query Docs with Llama 2](notebooks/3.0-llama3-chat-pdf-intro.ipynb)
 
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/2.0-ls-Query-Docs-Llama2.ipynb)
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/3.0-llama3-chat-pdf-intro.ipynb)
 
 5. [LangChain Llama2 QA CSV](notebooks/2.1-Langchain-Llama2-Qa-Csv.ipynb)
 
