@@ -20,14 +20,12 @@
 <textarea id="source">
     class: center, middle
     
-    # Getting Started with Llama3
+    # Getting Started with Llama3.1
     ## Lucas Soares
-    ### 11-06-2024
+    ### 08-08-2024
     
     ---
     # Methodology Notes
-
-    The presentation will be organized into the following structure:
 
     --
     1. Presentation Block
@@ -101,69 +99,72 @@
     ---
     # Introduction to Llama3
 
-    <img src="2024-06-03-16-29-51.png" width="100%">
+    <img src="../notebooks/assets-resources/llama31-intro.png" width="100%">
+
+    
 
     ---
-    # Llama3 Release
+    # Llama3.1 Release
     
-    - LLM Released by Meta in April of 2024
+    - LLM Released by Meta in July of 2024
 
     --
 
-    - Open source with a Commercial license (just like Llama2)
+    - Open source with a Commercial license (just like Llama2 & Llama3)
 
     --
 
-    - [Meta Llama3 Resources](https://ai.meta.com/llama/#resources)
+    - [Meta Llama3.1 Resources](https://ai.meta.com/llama/#resources)
 
     ---
 
     # Incredible Performance in 2 sizes
-    - Llama3 is OPEN SOURCE
-    - [Released in 2 sizes: 8B and 70B parameters.](https://ai.meta.com/blog/meta-llama-3/)
-    - Incredible evaluation performances for both 70B and 8B models
+
+    --
+
+    - Llama3.1 is OPEN SOURCE
+
+    --
+    
+    - [Released in 3 sizes: 8B, 70B & 405B parameters.](https://ai.meta.com/blog/meta-llama-3-1/)
+
+    --
+
+    - Incredible evaluation performances for all  models.
 
     ---
     
-    <img src="./2024-06-03-16-35-54.png" style="width: 100%; margin-top: 40pt;">
+    <img src="../notebooks/assets-resources/llama31-evals.png" style="width: 100%; margin-top: 40pt;">
 
-    <p style="font-size: 14px; margin-top:50pt;">
-        <a href='https://ai.meta.com/blog/meta-llama-3/#:~:text=a%20system-level%20approach%20to%20responsibility'>Meta AI Llama3 Release Blog Post</a>
+       <p style="font-size: 14px; margin-top:50pt;">
+        <a href='https://ai.meta.com/blog/meta-llama-3/#:~:text=a%20system-level%20approach%20to%20responsibility'>Meta AI Llama3.1 Release Blog Post</a>
       </p>
 
     ---
 
-    <img src="./2024-06-03-16-38-14.png" style="width: 100%; margin-top: 40pt;"> 
+    # Llama 3.1 405B Rivals Closed Source Models
 
-    <p style="font-size: 14px; margin-top:50pt;">
-        <a href='https://ai.meta.com/blog/meta-llama-3/#:~:text=a%20system-level%20approach%20to%20responsibility'>Meta AI Llama3 Release Blog Post</a>
+    <img src="../notebooks/assets-resources/llama31-evals-405b.png" style="width: 100%;"> 
+
+      <p style="font-size: 14px; margin-top:50pt;">
+        <a href='https://ai.meta.com/blog/meta-llama-3-1/'>Meta AI Llama3.1 Release Blog Post</a>
       </p>
 
     ---
-
-    <img src="./2024-06-03-16-44-59.png" style="width: 100%; margin-top: 40pt;">
-
-    <p style="font-size: 14px; margin-top:50pt;">
-        <a href='https://ai.meta.com/blog/meta-llama-3/#:~:text=a%20system-level%20approach%20to%20responsibility'>Meta AI Llama3 Release Blog Post</a>
-      </p>
-
-    ---
-    # Llama3 Technical Details
+    # Llama3.1 Technical Details
 
     - Data: Trained on over 15 trillion tokens of text data
 
     --
     
-    - Context length: 8192 tokens
+    - Context length: 128k tokens
     
     --
     
     - System level approach for responsible development
 
-    <img src="./2024-06-03-16-46-04.png" style="width: 100%; margin-top: 0pt;">
-
     <p style="font-size: 14px; margin-top:50pt;">
-      <a href='https://ai.meta.com/blog/meta-llama-3/#:~:text=a%20system-level%20approach%20to%20responsibility'>Meta AI Llama3 Release Blog Post</a>
+      <a href='https://ai.meta.com/blog/meta-llama-3/#:~:text=a%20system-level%20approach%20to%20responsibility'>Meta AI Llama3.1 Release Blog Post</a>
     </p>
 
     ---
@@ -171,39 +172,39 @@
 
     <h1>
     <span style="background-color: lightgreen">
-      Notebook Demo - Introduction to Llama3
+      Notebook Demo - Introduction to Llama3.1
     </span>
     </h1>
 
     ---
 
-    # Query Your Docs Locally with Llama3
+    # Query Your Docs Locally with Llama3.1
 
     - Need for LLMs with access to context-relevant data.
 
     <img src="../notebooks/assets-resources/private-qa-llama2.png" width="50%" style="margin-left: 30pt;">
 
     ---
-    # Query Your Docs Locall with Llama3
+    # Query Your Docs Locall with Llama3.1
 
     - Privacy concern with closed source LLMs.
 
     <img src="../notebooks/assets-resources/llama2-rag-intro.png" width="50%" style="margin-left: 30pt;">
     
     ---
-    # Query Your Docs Locall with Llama3
+    # Query Your Docs Locall with Llama3.1
     
-    - Solution? Llama3!
+    - Solution? Llama3.1!
 
     <img src="../notebooks/assets-resources/llama2-rag-limitations.png" width="50%" style="margin-left: 30pt;">
 
     ---
-    # RAG with Llama3
+    # RAG with Llama3.1
     - RAG - Retrieval Augmented Generation
     <img src="../notebooks/assets-resources/llama2-rag-what-why.png" width="80%">
 
     ---
-    # RAG with Llama3
+    # RAG with Llama3.1
 
     - LLMs have a limited context length
 
@@ -271,7 +272,69 @@
     ---
     class: center, middle
     
+    <h1>
+    <span style="background-color: lightgreen">
+      Notebook Demo - Local RAG with Llama 3.1
+    </span>
+    </h1>
+    
+    ---
+    class: center, middle
+    
     # Q&A / Break
+    
+    ---
+    # Local Agents with Llama 3.1
+
+    --
+      
+    <img src="../notebooks/assets-resources/agent-loop.png" width="1500">
+
+    <p class="footnote">
+        <a href='https://blog.langchain.dev/openais-bet-on-a-cognitive-architecture/'> Explanation of the agent loop in cognitive architectures. </a>
+    </p>
+
+    ---
+
+    # Practical Use Case: Customer Support Agent
+
+    --
+    
+    - **Scenario**: An LLM-powered customer support agent.
+
+    --
+    
+    - **User Input**: Customer asks about order status.
+
+    --
+    
+    - **LLM Decision**: Determines if it can provide the status directly or if it needs to fetch data from the database.
+
+    --
+    
+    - **Action Taken**: If data fetch is needed, the agent queries the database and updates the user with the order status.
+
+    <p class="footnote">
+        <a href='https://langchain-ai.github.io/langgraph/concepts/high_level/#deployment'> Practical use case of LLM agents in customer support. </a>
+    </p>
+
+    ---
+    class: center, middle
+
+      <h1>
+      <span style="background-color: lightgreen">
+        Notebook Demo - Tool Calling and local agents with Llama 3.1
+      </span>
+      </h1>
+    ---
+    class: center, middle
+
+    # Q&A / Break
+
+    ---
+    class: center, middle
+
+    # Fine Tunning Llama3.1
 
     ---
     <img src="../notebooks/assets-resources/finetuning-llama3/finetuning-llama3.001.jpeg" style="width: 130%; margin-left:-100pt";>
@@ -306,6 +369,15 @@
       <a href='https://arxiv.org/pdf/2106.09685'>Lora Paper</a>
     </p>
     ---
+    class: center, middle
+
+      <h1>
+      <span style="background-color: lightgreen">
+        Notebook Demo - Fine-Tuning Llama3.1 - Walkthrough
+      </span>
+      </h1>
+
+
 
 </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js">
