@@ -2,7 +2,6 @@ jupyter
 llama-cpp-python
 langchain
 langchain-experimental
-huggingface-cli
 ollama
 pypdf
 sentence-transformers
@@ -10,7 +9,7 @@ chromadb
 llama-index
 llama-index-llms-ollama
 llama-index-llms-huggingface
-ctransformers
+transformers
 bitsandbytes
 accelerate
 langchainhub
