@@ -64,42 +64,66 @@ deactivate
 
 Here are the notebooks available in the `notebooks/` folder:
 
-1. [Getting Started with Llama 2](notebooks/1.0-ls-Getting-Started-With-Llama2.ipynb)
+## Notebooks
 
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/1.0-ls-Getting-Started-With-Llama2.ipynb)
+Here are the notebooks available in the `notebooks/` folder:
 
-2. [Hello Llama Local](notebooks/1.1-HelloLlamaLocal.ipynb)
+1. [Llama 3 Quick Start](notebooks/1.0-Llama3-Quick-Start.ipynb)
 
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/1.1-HelloLlamaLocal.ipynb)
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/1.0-Llama3-Quick-Start.ipynb)
 
-3. [Ollama Quick Setup](notebooks/1.2-ollama_quick_setup.ipynb)
+2. [Llama 3 Vector Similarity Search](notebooks/2.0-llama3-vector-similarity-search.ipynb)
 
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/1.2-ollama_quick_setup.ipynb)
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/2.0-llama3-vector-similarity-search.ipynb)
 
-4. [Query Docs with Llama 2](notebooks/3.0-llama3-chat-pdf-intro.ipynb)
+3. [Llama 3 Chat PDF Intro](notebooks/3.0-llama3-chat-pdf-intro.ipynb)
 
    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/3.0-llama3-chat-pdf-intro.ipynb)
 
-5. [LangChain Llama2 QA CSV](notebooks/2.1-Langchain-Llama2-Qa-Csv.ipynb)
+4. [PrivateGPT with Llama 3 Quick Setup](notebooks/3.2-privateGPT-with-llama3-quick-setup.ipynb)
 
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/2.1-Langchain-Llama2-Qa-Csv.ipynb)
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/3.2-privateGPT-with-llama3-quick-setup.ipynb)
 
-6. [Quiz from Source Llama2 - Llama Index](notebooks/3.0-quiz_from_source_llama2-llama-index.ipynb)
+5. [Tool Calling Ollama](notebooks/4.0-tool-calling-ollama.ipynb)
 
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/3.0-quiz_from_source_llama2-llama-index.ipynb)
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/4.0-tool-calling-ollama.ipynb)
 
-7. [Structured Output Langchain Llama2](notebooks/3.1-structured-output-langchain-llama2.ipynb)
+6. [Llama 3 Groq Function Calling](notebooks/4.1-llama3-groq-function-calling.ipynb)
 
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/3.1-structured-output-langchain-llama2.ipynb)
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/4.1-llama3-groq-function-calling.ipynb)
 
-8. [Fine Tuning Llama2](notebooks/4.0-ls-Fine-Tuning-Llama2.ipynb)
+7. [Llama 3.1 LlamaCPP Tool Calling](notebooks/4.1-llama31-llamacpp-tool-calling.ipynb)
 
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/4.0-ls-Fine-Tuning-Llama2.ipynb)
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/4.1-llama31-llamacpp-tool-calling.ipynb)
 
-9. [Quantization Basics](notebooks/4.1-quantization-basics.ipynb)
+8. [Llama 3.1 Tool Calling](notebooks/4.2-llama31-tool-calling.ipynb)
 
-    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/4.2-llama31-tool-calling.ipynb)
 
-10. [Fine Tuning Llama2](notebooks/4.0-ls-Fine-Tuning-Llama2.ipynb)
+9. [Tool Calling Agent](notebooks/4.3-tool-calling-agent.ipynb)
 
-    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/4.0-ls-Fine-Tuning-Llama2.ipynb)
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/4.3-tool-calling-agent.ipynb)
+
+10. [Llama 3.1 Structured Outputs](notebooks/4.4-llama31-structured-outputs.ipynb)
+
+    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/4.4-llama31-structured-outputs.ipynb)
+
+11. [Llama 3 Agentic RAG](notebooks/5.0-llama3-agentic-rag.ipynb)
+
+    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/5.0-llama3-agentic-rag.ipynb)
+
+12. [Fine Tuning Llama 3: What You Need to Know](notebooks/6.0-fine-tuning-llama3-what-you-need-to-know.ipynb)
+
+    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/6.0-fine-tuning-llama3-what-you-need-to-know.ipynb)
+
+13. [Fine Tuning Walkthrough Hugging Face](notebooks/6.1-fine-tuning-walkthrough-hugging-face.ipynb)
+
+    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/6.1-fine-tuning-walkthrough-hugging-face.ipynb)
+
+14. [Quantization Precision Format Code Explanation](notebooks/6.2-quantization-precision-format-code-explanation.ipynb)
+
+    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/6.2-quantization-precision-format-code-explanation.ipynb)
+
+15. [GUI for Llama 3 Options](notebooks/7.0-gui-for-llama3-options.ipynb)
+
+    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/7.0-gui-for-llama3-options.ipynb)
