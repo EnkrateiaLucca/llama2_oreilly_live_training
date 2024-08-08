@@ -333,6 +333,7 @@ langchain-core==0.2.29
     #   langchain-experimental
     #   langchain-groq
     #   langchain-ollama
+    #   langchain-openai
     #   langchain-text-splitters
     #   langgraph
     #   langgraph-checkpoint
@@ -341,6 +342,8 @@ langchain-experimental==0.0.64
 langchain-groq==0.1.9
     # via -r ./requirements/requirements.in
 langchain-ollama==0.1.1
+    # via -r ./requirements/requirements.in
+langchain-openai==0.1.20
     # via -r ./requirements/requirements.in
 langchain-text-splitters==0.2.2
     # via langchain
@@ -519,6 +522,7 @@ onnxruntime==1.18.1
     # via chromadb
 openai==1.40.1
     # via
+    #   langchain-openai
     #   llama-index-agent-openai
     #   llama-index-core
     #   llama-index-legacy
@@ -842,6 +846,7 @@ threadpoolctl==3.5.0
     # via scikit-learn
 tiktoken==0.7.0
     # via
+    #   langchain-openai
     #   llama-index-core
     #   llama-index-legacy
     #   tavily-python

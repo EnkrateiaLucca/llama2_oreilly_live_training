@@ -2,6 +2,7 @@ jupyter
 langchain
 langchain-experimental
 langchain-ollama
+langchain-openai
 ollama
 pypdf
 sentence-transformers
