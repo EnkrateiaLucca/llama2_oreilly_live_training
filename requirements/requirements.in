@@ -1,7 +1,7 @@
 jupyter
-llama-cpp-python
 langchain
 langchain-experimental
+langchain-ollama
 ollama
 pypdf
 sentence-transformers
@@ -18,3 +18,4 @@ gpt4all
 langgraph
 langchain-groq
 matplotlib
+unstructured[md]

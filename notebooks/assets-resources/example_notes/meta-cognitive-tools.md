@@ -1,0 +1,1 @@
+Incorporate tools that encourage users to reflect on their learning process. This could include journals, progress trackers, and self-assessment quizzes. Encouraging meta-cognition helps users become more aware of their learning strategies and areas for improvement.
