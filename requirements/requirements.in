@@ -4,6 +4,7 @@ langchain-experimental
 langchain-ollama
 langchain-openai
 ollama
+llama-cpp-python
 pypdf
 sentence-transformers
 chromadb

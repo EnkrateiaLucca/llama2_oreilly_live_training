@@ -20,9 +20,9 @@
 <textarea id="source">
     class: center, middle
     
-    # Getting Started with Llama3.1
+    # Getting Started with Llama3.2
     ## Lucas Soares
-    ### 08-08-2024
+    ### 12-02-2024
     
     ---
     # Methodology Notes
@@ -97,14 +97,13 @@
     <img src="../notebooks/assets-resources/llm-prob-distributions-context.png" style="width:100%; margin-top: 40pt;">
 
     ---
-    # Introduction to Llama3
+    # Introduction to Llama 3.2
 
-    <img src="../notebooks/assets-resources/llama31-intro.png" width="100%">
-
+    <img src="../notebooks/assets-resources/llama32-intro.png" width="90%">
     
 
     ---
-    # Llama3.1 Release
+    # Llama3.2 Release
     
     - LLM Released by Meta in July of 2024
 
@@ -114,19 +113,23 @@
 
     --
 
-    - [Meta Llama3.1 Resources](https://ai.meta.com/llama/#resources)
+    - [Meta Llama3.2 Resources](https://ai.meta.com/llama/#resources)
+
+    --
+
+    - [Llama 3.2 Repo](https://github.com/meta-llama/llama-recipes)
 
     ---
 
-    # Incredible Performance in 2 sizes
+    # Incredible Performance in 4 sizes
 
     --
 
-    - Llama3.1 is OPEN SOURCE
+    - Llama3.2 is OPEN SOURCE
 
     --
     
-    - [Released in 3 sizes: 8B, 70B & 405B parameters.](https://ai.meta.com/blog/meta-llama-3-1/)
+    - [Released in 4 sizes: 1B, 3B for text and 11B & 90B for the vision models.](https://ai.meta.com/llama/#resources)
 
     --
 
@@ -134,12 +137,28 @@
 
     ---
     
-    <img src="../notebooks/assets-resources/llama31-evals.png" style="width: 100%; margin-top: 40pt;">
+    <img src="../notebooks/assets-resources/llama32-evals.png" style="width: 90%; margin-top: -30pt; display: block; margin-left: auto; margin-right: auto;">    
+    <!-- <p style="font-size: 14px; margin-top:50pt;"></p>
+      <a href='https://ai.meta.com/blog/meta-llama-3/#:~:text=a%20system-level%20approach%20to%20responsibility'>Meta AI Llama3.2 Release Blog Post</a>
+    </p> -->
 
-       <p style="font-size: 14px; margin-top:50pt;">
-        <a href='https://ai.meta.com/blog/meta-llama-3/#:~:text=a%20system-level%20approach%20to%20responsibility'>Meta AI Llama3.1 Release Blog Post</a>
+    ---
+    class: center, middle
+
+    # Let's not forget Llama 3.1!
+
+    ---
+
+    # Llama 3.1 8B & 70B
+
+    <img src="../notebooks/assets-resources/llama31-evals.png" style="width: 100%;"> 
+
+      <p style="font-size: 14px; margin-top:50pt;">
+        <a href='https://ai.meta.com/blog/meta-llama-3-1/'>Meta AI Llama3.1 Release Blog Post</a>
       </p>
 
+    
+    
     ---
 
     # Llama 3.1 405B Rivals Closed Source Models
@@ -147,7 +166,7 @@
     <img src="../notebooks/assets-resources/llama31-evals-405b.png" style="width: 100%;"> 
 
       <p style="font-size: 14px; margin-top:50pt;">
-        <a href='https://ai.meta.com/blog/meta-llama-3-1/'>Meta AI Llama3.1 Release Blog Post</a>
+        <a href='https://ai.meta.com/blog/llama-3-2-connect-2024-vision-edge-mobile-devices/'>Meta AI Llama3.2 Release Blog Post</a>
       </p>
 
     ---
@@ -164,65 +183,85 @@
     - System level approach for responsible development
 
     <p style="font-size: 14px; margin-top:50pt;">
-      <a href='https://ai.meta.com/blog/meta-llama-3/#:~:text=a%20system-level%20approach%20to%20responsibility'>Meta AI Llama3.1 Release Blog Post</a>
+      <a href='https://ai.meta.com/blog/llama-3-2-connect-2024-vision-edge-mobile-devices/'>Meta AI Llama3.2 Release Blog Post</a>
     </p>
 
+    ---
+
+    # From Llama 3.1 to Llama 3.2 with Knowledge Distillation & Pruning 
+
+    <div style="text-align: center;">
+      <img src="../notebooks/assets-resources/llama32-training.png" style="width: 90%; margin-top: 30pt; display: block; margin-left: auto; margin-right: auto;">
+      <p style="font-size: 14px; margin-top: 20pt;">
+        <a href='https://ai.meta.com/blog/llama-3-2-connect-2024-vision-edge-mobile-devices/'>Meta AI Llama3.2 Release Blog Post</a>
+      </p>
+    </div>
+    
+    ---
+
+    # Training Llama 3.2 Vision Models
+
+    --
+
+    1. Architecture Adaptation:
+      
+      - Integrated image processing capabilities while preserving text abilities through adapter weights, cross-attention layers, and frozen language model parameters.
+
+    --
+
+    2. Training Pipeline:
+      
+      - Built upon Llama 3.1 models through pretraining on image-text pairs followed by domain-specific fine-tuning.
+
+    --
+
+    3. Post-Training Alignment:
+        
+      - Enhanced model safety and performance through supervised fine-tuning with rejection sampling and safety-focused data.
+
+
+    
     ---
     class: center,middle
 
     <h1>
     <span style="background-color: lightgreen">
-      Notebook Demo - Introduction to Llama3.1
+      Notebook Demo - Introduction to Llama3.2
     </span>
     </h1>
 
     ---
 
-    # Query Your Docs Locally with Llama3.1
+    # Query Your Docs Locally with Llama3.2
 
     - Need for LLMs with access to context-relevant data.
 
     <img src="../notebooks/assets-resources/private-qa-llama2.png" width="50%" style="margin-left: 30pt;">
 
     ---
-    # Query Your Docs Locall with Llama3.1
+    # Query Your Docs Locall with Llama3.2
 
     - Privacy concern with closed source LLMs.
 
     <img src="../notebooks/assets-resources/llama2-rag-intro.png" width="50%" style="margin-left: 30pt;">
     
     ---
-    # Query Your Docs Locall with Llama3.1
+    # Query Your Docs Locall with Llama3.2
     
-    - Solution? Llama3.1!
+    - Solution? Llama3.2!
 
     <img src="../notebooks/assets-resources/llama2-rag-limitations.png" width="50%" style="margin-left: 30pt;">
 
     ---
-    # RAG with Llama3.1
+    # RAG with Llama3.2
     - RAG - Retrieval Augmented Generation
     <img src="../notebooks/assets-resources/llama2-rag-what-why.png" width="80%">
 
     ---
-    # RAG with Llama3.1
-
-    - LLMs have a limited context length
+    # RAG with Llama3.2
 
     <img src="../notebooks/assets-resources/llama2-embeddings-content.png" width="80%">
-
-    ---
-
-    # Q&A RAG Tech Friction of Access
-
-    - Framework for RAG Systems
     
-    - Friction of Access
-    
-    <img src="../notebooks/assets-resources/tech-friction-access.png" width="80%">
-    <p style="font-size: 14px; margin-top:50pt;">
-        <a href='https://python.langchain.com/docs/use_cases/question_answering/'>Langchain Docs</a>
-    </p>
-
     ---
     <img src="../notebooks/assets-resources/rag-llama3/rag-llama3.001.jpeg" style="width: 130%; margin-left:-100pt";>
     <p style="font-size: 14px; margin-top:50pt;">
@@ -274,7 +313,7 @@
     
     <h1>
     <span style="background-color: lightgreen">
-      Notebook Demo - Local RAG with Llama 3.1
+      Notebook Demo - Local RAG with Llama 3.2
     </span>
     </h1>
     
@@ -284,7 +323,7 @@
     # Q&A / Break
     
     ---
-    # Local Agents with Llama 3.1
+    # Local Agents with Llama 3.2
 
     --
       
@@ -323,7 +362,7 @@
 
       <h1>
       <span style="background-color: lightgreen">
-        Notebook Demo - Tool Calling and local agents with Llama 3.1
+        Notebook Demo - Tool Calling and local agents with Llama 3.2
       </span>
       </h1>
     ---
@@ -334,7 +373,7 @@
     ---
     class: center, middle
 
-    # Fine Tunning Llama3.1
+    # Fine Tunning Llama3.2
 
     ---
     <img src="../notebooks/assets-resources/finetuning-llama3/finetuning-llama3.001.jpeg" style="width: 130%; margin-left:-100pt";>

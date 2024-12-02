@@ -129,6 +129,8 @@ dirtyjson==1.0.8
     # via
     #   llama-index-core
     #   llama-index-legacy
+diskcache==5.6.3
+    # via llama-cpp-python
 distro==1.9.0
     # via
     #   groq
@@ -246,6 +248,7 @@ jinja2==3.1.4
     #   jupyter-server
     #   jupyterlab
     #   jupyterlab-server
+    #   llama-cpp-python
     #   nbconvert
     #   torch
 jiter==0.5.0
@@ -362,6 +365,8 @@ langsmith==0.1.98
     #   langchain-core
 llama-cloud==0.0.12
     # via llama-index-indices-managed-llama-cloud
+llama-cpp-python==0.3.2
+    # via -r ./requirements/requirements.in
 llama-index==0.10.62
     # via -r ./requirements/requirements.in
 llama-index-agent-openai==0.2.9
@@ -499,6 +504,7 @@ numpy==1.26.4
     #   contourpy
     #   langchain
     #   langchain-community
+    #   llama-cpp-python
     #   llama-index-core
     #   llama-index-legacy
     #   matplotlib
@@ -926,6 +932,7 @@ typing-extensions==4.12.2
     #   huggingface-hub
     #   ipython
     #   langchain-core
+    #   llama-cpp-python
     #   llama-index-core
     #   llama-index-legacy
     #   openai
