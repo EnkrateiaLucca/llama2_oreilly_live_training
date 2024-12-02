@@ -596,6 +596,7 @@ packaging==24.1
     #   matplotlib
     #   nbconvert
     #   onnxruntime
+    #   plotly
     #   qtconsole
     #   qtpy
     #   transformers
@@ -617,6 +618,8 @@ pillow==10.4.0
     #   sentence-transformers
 platformdirs==4.2.2
     # via jupyter-core
+plotly==5.24.1
+    # via -r ./requirements/requirements.in
 posthog==3.5.0
     # via chromadb
 prometheus-client==0.20.0
@@ -780,7 +783,9 @@ safetensors==0.4.4
     #   accelerate
     #   transformers
 scikit-learn==1.5.1
-    # via sentence-transformers
+    # via
+    #   -r ./requirements/requirements.in
+    #   sentence-transformers
 scipy==1.14.0
     # via
     #   bitsandbytes
@@ -842,6 +847,7 @@ tenacity==8.5.0
     #   langchain-core
     #   llama-index-core
     #   llama-index-legacy
+    #   plotly
 terminado==0.18.1
     # via
     #   jupyter-server

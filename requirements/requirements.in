@@ -21,3 +21,5 @@ langgraph
 langchain-groq
 matplotlib
 unstructured[md]
+scikit-learn
+plotly
