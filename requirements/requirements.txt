@@ -8,6 +8,7 @@ aiohappyeyeballs==2.3.5
     # via aiohttp
 aiohttp==3.10.1
     # via
+    #   huggingface-hub
     #   langchain
     #   langchain-community
     #   llama-index-core
@@ -15,6 +16,8 @@ aiohttp==3.10.1
     #   text-generation
 aiosignal==1.3.1
     # via aiohttp
+aiosqlite==0.20.0
+    # via langgraph-checkpoint-sqlite
 annotated-types==0.7.0
     # via pydantic
 anyio==4.4.0
@@ -197,6 +200,7 @@ httpx==0.27.0
     #   chromadb
     #   groq
     #   jupyterlab
+    #   langsmith
     #   llama-cloud
     #   llama-index-core
     #   llama-index-legacy
@@ -207,7 +211,10 @@ httpx==0.27.0
 huggingface-hub==0.23.5
     # via
     #   accelerate
+    #   llama-index-embeddings-huggingface
+    #   llama-index-embeddings-huggingface-api
     #   llama-index-llms-huggingface
+    #   llama-index-utils-huggingface
     #   sentence-transformers
     #   text-generation
     #   tokenizers
@@ -329,7 +336,7 @@ langchain==0.2.12
     #   langchain-community
 langchain-community==0.2.11
     # via langchain-experimental
-langchain-core==0.2.29
+langchain-core==0.2.43
     # via
     #   langchain
     #   langchain-community
@@ -356,9 +363,13 @@ langdetect==1.0.9
     # via unstructured
 langgraph==0.2.2
     # via -r ./requirements/requirements.in
-langgraph-checkpoint==1.0.2
-    # via langgraph
-langsmith==0.1.98
+langgraph-checkpoint==1.0.12
+    # via
+    #   langgraph
+    #   langgraph-checkpoint-sqlite
+langgraph-checkpoint-sqlite==1.0.4
+    # via -r ./requirements/requirements.in
+langsmith==0.1.147
     # via
     #   langchain
     #   langchain-community
@@ -380,6 +391,8 @@ llama-index-core==0.10.62
     #   llama-index
     #   llama-index-agent-openai
     #   llama-index-cli
+    #   llama-index-embeddings-huggingface
+    #   llama-index-embeddings-huggingface-api
     #   llama-index-embeddings-openai
     #   llama-index-indices-managed-llama-cloud
     #   llama-index-llms-huggingface
@@ -390,7 +403,12 @@ llama-index-core==0.10.62
     #   llama-index-question-gen-openai
     #   llama-index-readers-file
     #   llama-index-readers-llama-parse
+    #   llama-index-utils-huggingface
     #   llama-parse
+llama-index-embeddings-huggingface==0.2.3
+    # via -r ./requirements/requirements.in
+llama-index-embeddings-huggingface-api==0.1.1
+    # via -r ./requirements/requirements.in
 llama-index-embeddings-openai==0.1.11
     # via
     #   llama-index
@@ -423,6 +441,8 @@ llama-index-readers-file==0.1.32
     # via llama-index
 llama-index-readers-llama-parse==0.1.6
     # via llama-index
+llama-index-utils-huggingface==0.1.1
+    # via llama-index-embeddings-huggingface-api
 llama-parse==0.4.9
     # via llama-index-readers-llama-parse
 lxml==5.2.2
@@ -447,6 +467,8 @@ matplotlib-inline==0.1.7
     #   ipython
 mdurl==0.1.2
     # via markdown-it-py
+minijinja==2.5.0
+    # via huggingface-hub
 mistune==3.0.2
     # via nbconvert
 mmh3==4.1.0
@@ -455,6 +477,8 @@ monotonic==1.6
     # via posthog
 mpmath==1.3.0
     # via sympy
+msgpack==1.1.0
+    # via langgraph-checkpoint
 multidict==6.0.5
     # via
     #   aiohttp
@@ -761,7 +785,9 @@ requests==2.32.3
 requests-oauthlib==2.0.0
     # via kubernetes
 requests-toolbelt==1.0.0
-    # via unstructured-client
+    # via
+    #   langsmith
+    #   unstructured-client
 rfc3339-validator==0.1.4
     # via
     #   jsonschema
@@ -794,7 +820,9 @@ scipy==1.14.0
 send2trash==1.8.3
     # via jupyter-server
 sentence-transformers==3.0.1
-    # via -r ./requirements/requirements.in
+    # via
+    #   -r ./requirements/requirements.in
+    #   llama-index-embeddings-huggingface
 setuptools==72.1.0
     # via
     #   jupyterlab
@@ -927,6 +955,7 @@ types-requests==2.32.0.20240712
     # via langchainhub
 typing-extensions==4.12.2
     # via
+    #   aiosqlite
     #   anyio
     #   asgiref
     #   async-lru

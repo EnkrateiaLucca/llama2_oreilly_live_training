@@ -18,8 +18,12 @@ langchainhub
 tavily-python
 gpt4all
 langgraph
+langgraph-checkpoint-sqlite
 langchain-groq
 matplotlib
 unstructured[md]
 scikit-learn
 plotly
+llama-index-llms-huggingface
+llama-index-embeddings-huggingface
+llama-index-embeddings-huggingface-api
