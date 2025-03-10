@@ -101,11 +101,6 @@
 
     <img src="../notebooks/assets-resources/llama3-intro.png" width="90%">
 
-    
-
-    
-    
-
     ---
     # Llama3 Releases
     
@@ -182,98 +177,64 @@
     </p>
 
     ---
-    # Llama 3 Resources
-
-
-    - [Meta Llama Resources](https://ai.meta.com/llama/#resources)
-
-    --
-
-    - [Llama 3 Repo](https://github.com/meta-llama/llama-recipes)
+    class: center, middle
+    
+    
+    
+    <h1>
+    <span style="background-color: lightgreen">
+      Whiteboard - Llama 3 Offering Breakdown
+    </span>
+    </h1>
     
     ---
-    
-    # Llama 3.1 405B Rivals Closed Source Models
-    
-    - System level approach for responsible development
+    class: center,middle
 
-    <p style="font-size: 14px; margin-top:50pt;">
-      <a href='https://ai.meta.com/blog/llama-3-2-connect-2024-vision-edge-mobile-devices/'>Meta AI Llama3.2 Release Blog Post</a>
-    </p>
-
-    ---
-
-    # From Llama 3.1 to Llama 3.2 with Knowledge Distillation & Pruning 
-
-    <div style="text-align: center;">
-      <img src="../notebooks/assets-resources/llama32-training.png" style="width: 90%; margin-top: 30pt; display: block; margin-left: auto; margin-right: auto;">
-      <p style="font-size: 14px; margin-top: 20pt;">
-        <a href='https://ai.meta.com/blog/llama-3-2-connect-2024-vision-edge-mobile-devices/'>Meta AI Llama3.2 Release Blog Post</a>
-      </p>
-    </div>
-    
-    ---
-
-    # Training Llama 3.2 Vision Models
-
-    --
-
-    1. Architecture Adaptation:
-      
-      - Integrated image processing capabilities while preserving text abilities through adapter weights, cross-attention layers, and frozen language model parameters.
-
-    --
-
-    2. Training Pipeline:
-      
-      - Built upon Llama 3.1 models through pretraining on image-text pairs followed by domain-specific fine-tuning.
-
-    --
-
-    3. Post-Training Alignment:
-        
-      - Enhanced model safety and performance through supervised fine-tuning with rejection sampling and safety-focused data.
-
-
+    # Q&A / Break
     
     ---
     class: center,middle
 
     <h1>
     <span style="background-color: lightgreen">
-      Notebook Demo - Introduction to Llama3.2
+      Notebook Demo - Introduction to Using The Llama Series Models
     </span>
     </h1>
 
     ---
+    class: center,middle
 
-    # Query Your Docs Locally with Llama3.2
+    # Q&A / Break
+
+    ---
+
+    # Query Your Docs Locally with Llama 3
 
     - Need for LLMs with access to context-relevant data.
 
     <img src="../notebooks/assets-resources/private-qa-llama2.png" width="50%" style="margin-left: 30pt;">
 
     ---
-    # Query Your Docs Locall with Llama3.2
+    # Query Your Docs Locally with Llama 3
 
     - Privacy concern with closed source LLMs.
 
     <img src="../notebooks/assets-resources/llama2-rag-intro.png" width="50%" style="margin-left: 30pt;">
     
     ---
-    # Query Your Docs Locall with Llama3.2
+    # Query Your Docs Locall with Llama 3 
     
-    - Solution? Llama3.2!
+    - Solution? Llama 3!
 
     <img src="../notebooks/assets-resources/llama2-rag-limitations.png" width="50%" style="margin-left: 30pt;">
 
     ---
-    # RAG with Llama3.2
+    # RAG with Llama 3
     - RAG - Retrieval Augmented Generation
     <img src="../notebooks/assets-resources/llama2-rag-what-why.png" width="80%">
 
     ---
-    # RAG with Llama3.2
+    # RAG with Llama 3
 
     <img src="../notebooks/assets-resources/llama2-embeddings-content.png" width="80%">
     
@@ -328,7 +289,7 @@
     
     <h1>
     <span style="background-color: lightgreen">
-      Notebook Demo - Local RAG with Llama 3.2
+      Notebook Demo - Local RAG with Llama 3
     </span>
     </h1>
     
@@ -338,7 +299,7 @@
     # Q&A / Break
     
     ---
-    # Local Agents with Llama 3.2
+    # Local Agents with Llama 3
 
     --
       
@@ -350,23 +311,23 @@
 
     ---
 
-    # Practical Use Case: Customer Support Agent
+    # Practical Use Case: Private Docs Chatbot
 
     --
-    
-    - **Scenario**: An LLM-powered customer support agent.
+
+    - **Scenario**: An LLM-powered chatbot designed to assist users by retrieving information from private documents.
 
     --
-    
-    - **User Input**: Customer asks about order status.
+
+    - **User Input**: User asks about specific details from an internal document.
 
     --
-    
-    - **LLM Decision**: Determines if it can provide the status directly or if it needs to fetch data from the database.
+
+    - **LLM Decision**: Determines if the requested information requires search the document repository.
 
     --
-    
-    - **Action Taken**: If data fetch is needed, the agent queries the database and updates the user with the order status.
+
+    - **Action Taken**: If a search is required, the agent retrieves relevant document sections and provides a concise response based on the content.
 
     <p class="footnote">
         <a href='https://langchain-ai.github.io/langgraph/concepts/high_level/#deployment'> Practical use case of LLM agents in customer support. </a>
@@ -377,7 +338,7 @@
 
       <h1>
       <span style="background-color: lightgreen">
-        Notebook Demo - Tool Calling and local agents with Llama 3.2
+        Notebook Demo - Tool Calling/Structured Outputs and local agents with Llama 3
       </span>
       </h1>
     ---
@@ -388,49 +349,96 @@
     ---
     class: center, middle
 
-    # Fine Tunning Llama3.2
+    # Fine Tunning Llama 3
 
-    ---
-    <img src="../notebooks/assets-resources/finetuning-llama3/finetuning-llama3.001.jpeg" style="width: 130%; margin-left:-100pt";>
-
-    <p style="font-size: 14px; margin-top: 50pt;">
-        <a href='https://arxiv.org/pdf/2307.09288'>LLama2 Paper</a>
-      </p>
-    ---
-    <img src="../notebooks/assets-resources/finetuning-llama3/finetuning-llama3.002.jpeg" style="width: 130%; margin-left:-100pt";>
-
-    <p style="font-size: 14px; margin-top: 50pt;">
-        <a href='https://www.youtube.com/watch?v=g68qlo9Izf0&t=2935s'>Efficient Fine-Tuning for Llama-v2-7b on a Single GPU</a>
-      </p>
-    ---
-    <img src="../notebooks/assets-resources/finetuning-llama3/finetuning-llama3.003.jpeg" style="width: 130%; margin-left:-100pt";>
-
-    <p style="font-size: 14px; margin-top: 50pt;">
-        <a href='https://www.youtube.com/watch?v=g68qlo9Izf0&t=2935s'>Efficient Fine-Tuning for Llama-v2-7b on a Single GPU</a>
-      </p>
-    ---
-    <img src="../notebooks/assets-resources/finetuning-llama3/finetuning-llama3.004.jpeg" style="width: 130%; margin-left:-100pt";>
-
-    <p style="font-size: 14px; margin-top: 50pt;">
-      <a href='https://www.youtube.com/watch?v=g68qlo9Izf0&t=2935s'>Efficient Fine-Tuning for Llama-v2-7b on a Single GPU</a>
-    </p>
-    ---
-    <img src="../notebooks/assets-resources/finetuning-llama3/finetuning-llama3.005.jpeg" style="width: 130%; margin-left:-100pt";>
-    ---
-    <img src="../notebooks/assets-resources/finetuning-llama3/finetuning-llama3.006.jpeg" style="width: 130%; margin-left:-100pt";>
-
-    <p style="font-size: 14px; margin-top: 50pt;">
-      <a href='https://arxiv.org/pdf/2106.09685'>Lora Paper</a>
-    </p>
     ---
     class: center, middle
 
-      <h1>
-      <span style="background-color: lightgreen">
-        Notebook Demo - Fine-Tuning Llama3.1 - Walkthrough
-      </span>
-      </h1>
+    <h1>
+    <span style="background-color: lightgreen">
+      Whiteboard - Fine Tunning Llama 3: what, when, why and beyond
+    </span>
+    </h1>
 
+    ---
+    # Fine Tunning Llama 3
+
+    - <span style="color: red">What is fine-tuning?</span>
+
+    --
+
+    - <span style="color: green">It's the process of training a smaller model on a specific task leveraging a domain-specific dataset.</span>
+
+    --
+
+    - <span style="color: red">What does it do?</span>
+
+    --
+
+    - <span style="color: green">Fine-tuning transfers the pre-trained model’s learned patterns and features to new tasks, 
+      improving performance and reducing training data needs.</span>
+
+    --
+
+    - <span style="color: red">Why fine-tune?</span>
+
+    --
+
+    - <span style="color: green">To improve the model's performance on a specific task.</span>
+
+    --
+
+    - <span style="color: red">When to fine-tune?</span>
+
+    ---
+
+    <img src="../notebooks/assets-resources/when-to-finetune.png" style="width: 100%">
+    
+    ---
+    class: center, middle
+
+    <h1>
+    <span style="background-color: lightgreen">
+      Notebook Demo - Fine-Tuning Llama 3 - Walkthrough
+    </span>
+    </h1>
+
+    ---
+    class: center, middle
+
+    # Q&A / Break
+
+    ---
+    class: center, middle
+
+    <h1>
+    <span style="background-color: lightgreen">
+      Notebook Demo - End To End Example with Llama 3
+    </span>
+    </h1>
+
+    ---
+
+    # References
+
+    1. [Llama 3.3 Model Card](https://www.llama.com/docs/model-cards-and-prompt-formats/llama3_3/)
+    2. [Fine Tuning Video](https://www.youtube.com/watch?v=-hYqt8M9u_M&t=604s)
+    3. [High Quality Structured Report Generation Demo](https://youtu.be/E04rFNtwFcA?si=XM_nfu--7Tx41jvp)
+    4. [Llama Cookbook – Finetuning](https://github.com/meta-llama/llama-cookbook/tree/main/getting-started/finetuning)
+    5. [Llama Recipes](https://github.com/meta-llama/llama-recipes)
+    6. [Generating Synthetic Data](https://eugeneyan.com/writing/synthetic/)
+    7. [Llama Cookbook – End-to-End Use Cases](https://github.com/meta-llama/llama-cookbook/tree/main/end-to-end-use-cases)
+    8. [Structured Outputs with Ollama](https://ollama.com/blog/structured-outputs)
+    9. [Chunk Size Explanation](https://vectify.ai/blog/LargeDocumentSummarization?utm_source=substack&utm_medium=email)
+    10. [Embeddings + Llama by Simon Willison](https://simonwillison.net/2023/Oct/23/embeddings/#answering-questions-with-retrieval-augmented-generation)
+    11. [Embeddings + Parquet for Small Projects](https://minimaxir.com/2025/02/embeddings-parquet/)
+    12. [Awesome Local LLMs](https://github.com/vince-lam/awesome-local-llms)
+    13. [LLM-Driven Data Engineering](https://github.com/DataExpert-io/llm-driven-data-engineering)
+    14. [Text Chunking in RAG](https://www.youtube.com/watch?v=GYj4Ay7SdWw)
+    15. [Llama Resources – AI.Meta](https://ai.meta.com/llama/#resources)
+    16. [Llama 3 Paper (arXiv)](https://arxiv.org/pdf/2408.13296)
+
+    ---
 
 
 </textarea>
