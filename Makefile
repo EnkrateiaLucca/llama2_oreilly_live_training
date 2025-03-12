@@ -19,8 +19,9 @@ pip-tools-setup:
 	uv pip install pip-tools setuptools
 
 env-update:
-	uv pip compile ./requirements/requirements.in -o ./requirements/requirements.txt
-	uv pip sync ./requirements/requirements.txt
+	conda run -n $(ENV_NAME) bash -c "\
+		uv pip compile ./requirements/requirements.in -o ./requirements/requirements.txt && \
+		uv pip sync ./requirements/requirements.txt"
 
 notebook-setup:
 	python -m ipykernel install --user --name=$(ENV_NAME)
