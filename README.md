@@ -127,3 +127,28 @@ Here are the notebooks available in the `notebooks/` folder:
 15. [GUI for Llama 3 Options](notebooks/7.0-gui-for-llama3-options.ipynb)
 
     [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/7.0-gui-for-llama3-options.ipynb)
+
+16. [Best Local LLMs in Practice (2025 Edition)](notebooks/8.0-best-local-models-examples.ipynb)
+
+    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/8.0-best-local-models-examples.ipynb)
+
+## Additional Resources
+
+### Model Guides
+- **[LLM Model Sizes Guide](llm-model-sizes-guide.md)** - Comprehensive guide to different model sizes and their use cases
+- **[Best Local Models 2025](best-local-models-2025.md)** - Updated guide to the top-performing open-source models that can run locally with <64GB RAM, including Qwen, DeepSeek, Mixtral, and others
+
+### Key Features of the 2025 Model Guide:
+- **Performance Benchmarks**: Latest benchmark scores for reasoning, coding, and multilingual tasks
+- **Hardware Requirements**: Detailed RAM and GPU requirements for each model
+- **Deployment Instructions**: Step-by-step setup for Ollama, LM Studio, and other tools  
+- **Use Case Recommendations**: Which models work best for specific applications
+- **Model Comparisons**: Side-by-side analysis of capabilities and trade-offs
+
+### Top Models Covered Beyond Llama:
+- **Qwen2.5 Series** (Alibaba) - Exceptional multilingual and reasoning capabilities
+- **DeepSeek-V3 & DeepSeek-Coder** - Specialized programming and development
+- **Mixtral 8x22B** - Efficient Mixture of Experts architecture
+- **Gemma 2** (Google) - Efficient and safety-focused models
+- **Command-R+** (Cohere) - Optimized for RAG and tool use
+- **Yi-Large** (01.AI) - Strong bilingual performance
