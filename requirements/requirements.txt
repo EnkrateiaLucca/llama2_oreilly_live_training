@@ -91,8 +91,9 @@ chroma-hnswlib==0.7.6
     # via chromadb
 chromadb==0.5.5
     # via -r ./requirements/requirements.in
-click==8.1.7
+click==8.2.1
     # via
+    #   duckduckgo-search
     #   nltk
     #   typer
     #   uvicorn
@@ -138,6 +139,8 @@ distro==1.9.0
     # via
     #   groq
     #   openai
+duckduckgo-search==8.1.1
+    # via -r ./requirements/requirements.in
 emoji==2.12.1
     # via unstructured
 exceptiongroup==1.2.2
@@ -445,8 +448,10 @@ llama-index-utils-huggingface==0.1.1
     # via llama-index-embeddings-huggingface-api
 llama-parse==0.4.9
     # via llama-index-readers-llama-parse
-lxml==5.2.2
-    # via unstructured
+lxml==6.0.0
+    # via
+    #   duckduckgo-search
+    #   unstructured
 markdown==3.6
     # via unstructured
 markdown-it-py==3.0.0
@@ -646,6 +651,8 @@ plotly==5.24.1
     # via -r ./requirements/requirements.in
 posthog==3.5.0
     # via chromadb
+primp==0.15.0
+    # via duckduckgo-search
 prometheus-client==0.20.0
     # via jupyter-server
 prompt-toolkit==3.0.47
