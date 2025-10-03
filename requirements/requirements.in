@@ -1,5 +1,6 @@
 jupyter
 ollama
+openai
 pypdf2
 chromadb
 transformers
@@ -14,3 +15,4 @@ plotly
 pydantic
 ddgs
 langchain
+langchain-community
