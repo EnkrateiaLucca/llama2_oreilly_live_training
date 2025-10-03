@@ -62,75 +62,75 @@ deactivate
 
 ## Notebooks
 
-Here are the notebooks available in the `notebooks/` folder:
+### Core Learning Path
 
-## Notebooks
+These notebooks follow a structured learning path from basics to advanced topics:
 
-Here are the notebooks available in the `notebooks/` folder:
+#### 1. Getting Started with Local LLMs
 
-1. [Llama 3 Quick Start](notebooks/1.0-Llama3-Quick-Start.ipynb)
+1. [Quickstart with Ollama](notebooks/1.0-quickstart-ollama.ipynb) - Get started running local LLMs using Ollama
 
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/1.0-Llama3-Quick-Start.ipynb)
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/1.0-quickstart-ollama.ipynb)
 
-2. [Llama 3 Vector Similarity Search](notebooks/2.0-llama3-vector-similarity-search.ipynb)
+#### 2. RAG (Retrieval-Augmented Generation)
 
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/2.0-llama3-vector-similarity-search.ipynb)
+2. [Introduction to RAG](notebooks/2.0-introduction-to-rag.ipynb) - Learn the fundamentals of RAG with interactive visualizations of embeddings and chunking
 
-3. [Llama 3 Chat PDF Intro](notebooks/3.0-llama3-chat-pdf-intro.ipynb)
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/2.0-introduction-to-rag.ipynb)
 
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/3.0-llama3-chat-pdf-intro.ipynb)
+3. [Local RAG with Llama 3](notebooks/2.1-local-rag-with-llama3.ipynb) - Build a complete local RAG system using Llama 3 and PDF documents
 
-4. [PrivateGPT with Llama 3 Quick Setup](notebooks/3.2-privateGPT-with-llama3-quick-setup.ipynb)
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/2.1-local-rag-with-llama3.ipynb)
 
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/3.2-privateGPT-with-llama3-quick-setup.ipynb)
+#### 3. Tool Calling and Structured Outputs
 
-5. [Tool Calling Ollama](notebooks/4.0-tool-calling-ollama.ipynb)
+4. [Tool Calling with Ollama](notebooks/3.0-tool-calling-ollama.ipynb) - Learn how to implement tool calling with local LLMs (Gmail integration example)
 
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/4.0-tool-calling-ollama.ipynb)
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/3.0-tool-calling-ollama.ipynb)
 
-6. [Llama 3 Groq Function Calling](notebooks/4.1-llama3-groq-function-calling.ipynb)
+5. [Llama 3.1 Structured Outputs](notebooks/3.1-llama31-structured-outputs.ipynb) - Generate structured outputs using Pydantic models with Llama 3.1
 
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/4.1-llama3-groq-function-calling.ipynb)
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/3.1-llama31-structured-outputs.ipynb)
 
-7. [Llama 3.1 LlamaCPP Tool Calling](notebooks/4.1-llama31-llamacpp-tool-calling.ipynb)
+6. [Local Agent from Scratch](notebooks/3.2-local-agent-from-scratch.ipynb) - Build a simple agent from scratch using tool calling
 
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/4.1-llama31-llamacpp-tool-calling.ipynb)
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/3.2-local-agent-from-scratch.ipynb)
 
-8. [Llama 3.1 Tool Calling](notebooks/4.2-llama31-tool-calling.ipynb)
+#### 4. Agentic RAG
 
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/4.2-llama31-tool-calling.ipynb)
+7. [Simple Agentic RAG](notebooks/4.0-simple-agentic-rag.ipynb) - Build a ReAct-based agentic RAG system from scratch
 
-9. [Tool Calling Agent](notebooks/4.3-tool-calling-agent.ipynb)
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/4.0-simple-agentic-rag.ipynb)
 
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/4.3-tool-calling-agent.ipynb)
+#### 5. Fine-Tuning
 
-10. [Llama 3.1 Structured Outputs](notebooks/4.4-llama31-structured-outputs.ipynb)
+8. [Fine-Tuning Llama 3: What You Need to Know](notebooks/6.0-fine-tuning-llama3-what-you-need-to-know.md) - Comprehensive guide to fine-tuning concepts (LoRA, QLoRA, PEFT)
 
-    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/4.4-llama31-structured-outputs.ipynb)
+9. [Fine-Tuning Walkthrough with Hugging Face](notebooks/6.1-fine-tuning-walkthrough-hugging-face.ipynb) - Practical fine-tuning implementation
 
-11. [Llama 3 Agentic RAG](notebooks/5.0-llama3-agentic-rag.ipynb)
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/6.1-fine-tuning-walkthrough-hugging-face.ipynb)
 
-    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/5.0-llama3-agentic-rag.ipynb)
-
-12. [Fine Tuning Llama 3: What You Need to Know](notebooks/6.0-fine-tuning-llama3-what-you-need-to-know.ipynb)
-
-    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/6.0-fine-tuning-llama3-what-you-need-to-know.ipynb)
-
-13. [Fine Tuning Walkthrough Hugging Face](notebooks/6.1-fine-tuning-walkthrough-hugging-face.ipynb)
-
-    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/6.1-fine-tuning-walkthrough-hugging-face.ipynb)
-
-14. [Quantization Precision Format Code Explanation](notebooks/6.2-quantization-precision-format-code-explanation.ipynb)
+10. [Quantization Precision Format Code Explanation](notebooks/6.2-quantization-precision-format-code-explanation.ipynb) - Deep dive into model quantization
 
     [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/6.2-quantization-precision-format-code-explanation.ipynb)
 
-15. [GUI for Llama 3 Options](notebooks/7.0-gui-for-llama3-options.ipynb)
+#### 6. Advanced Topics
+
+11. [GUI for Llama 3 Options](notebooks/7.0-gui-for-llama3-options.ipynb) - Explore different GUI options for working with Llama models
 
     [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/7.0-gui-for-llama3-options.ipynb)
 
-16. [Best Local LLMs in Practice (2025 Edition)](notebooks/8.0-best-local-models-examples.ipynb)
+12. [Best Local LLMs in Practice (2025 Edition)](notebooks/8.0-best-local-models-examples.ipynb) - Compare and explore the best local models available
 
     [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/8.0-best-local-models-examples.ipynb)
+
+13. [vLLM Setup Guide](notebooks/vllm-setup-guide.ipynb) - Complete guide to setting up and using vLLM for high-performance inference
+
+    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/vllm-setup-guide.ipynb)
+
+### Legacy Notebooks
+
+Older versions and experimental notebooks are available in the `notebooks/legacy-notebooks/` directory.
 
 ## Additional Resources
 
