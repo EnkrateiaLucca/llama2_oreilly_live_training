@@ -78,7 +78,7 @@ These notebooks follow a structured learning path from basics to advanced topics
 
    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/2.0-introduction-to-rag.ipynb)
 
-3. [Local RAG with Llama 3](notebooks/2.1-local-rag-with-llama3.ipynb) - Build a complete local RAG system using Llama 3 and PDF documents
+3. [Local RAG with Llama 3](notebooks/2.1-local-rag.ipynb) - Build a complete local RAG system using Llama 3 and PDF documents
 
    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/2.1-local-rag-with-llama3.ipynb)
 
