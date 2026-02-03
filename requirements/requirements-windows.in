@@ -1,0 +1,29 @@
+# Windows-compatible requirements for "Getting Started with Llama 3"
+# Use with: uv pip compile ./requirements/requirements-windows.in -o ./requirements/requirements-windows.txt
+# Then install with: pip install -r requirements/requirements-windows.txt
+
+jupyter
+ollama
+openai
+llama-index
+llama-index-llms-huggingface
+pypdf2
+chromadb
+transformers
+# bitsandbytes has limited Windows support - uncomment if you have CUDA configured properly
+# bitsandbytes
+accelerate
+tavily-python
+gpt4all>=2.8.2  # Version 2.8.0 has no Windows wheels, 2.8.2+ works
+matplotlib
+unstructured[md]
+scikit-learn
+plotly
+pydantic
+ddgs
+langchain
+langchain-community
+
+# Windows alternative for uvloop (optional - improves async performance)
+# uvloop is Unix-only, winloop is the Windows equivalent
+winloop

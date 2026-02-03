@@ -4,6 +4,8 @@ Repository for the oreilly live training course: "Getting Started with Llama3": 
 
 ## Setup
 
+> **Windows Users:** See [WINDOWS-SETUP.md](WINDOWS-SETUP.md) for Windows-specific instructions and a compatible requirements file that addresses known compatibility issues.
+
 **Conda**
 
 - Install [anaconda](https://www.anaconda.com/download)
