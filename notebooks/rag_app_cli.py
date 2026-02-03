@@ -68,7 +68,7 @@ def query(query_engine, prompt: str) -> str:
 if __name__=="__main__":
     # takes input pdf path as command line argument
     if len(sys.argv) != 2:
-        print("Usage: python rag_app_cli.py <pdf_path>")
+        print("Usage: python rag_app_local_v1.py <pdf_path>")
         sys.exit(1)
     pdf_path = sys.argv[1]
     # load the pdf
