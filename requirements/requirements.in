@@ -1,6 +1,8 @@
 jupyter
 ollama
 openai
+llama-index
+llama-index-llms-huggingface
 pypdf2
 chromadb
 transformers
