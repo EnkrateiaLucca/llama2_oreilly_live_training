@@ -7,7 +7,7 @@ Agentic RAG CLI - A simple ReAct agent for searching PDFs.
 
 Usage:
     uv run agentic_rag_cli.py "What is LoRA?"
-    uv run agentic_rag_cli.py "Summarize the available PDFs" --model qwen3
+    uv run agentic_rag_cli.py "Summarize the available PDFs" --model qwen3.8
     uv run agentic_rag_cli.py "Search for fine-tuning" --max-turns 5 --quiet
 """
 
@@ -87,7 +87,11 @@ def read_full_pdf(pdf_path: str) -> str:
         )
 
         with open(text_file_path, 'r', encoding='utf-8', errors='ignore') as f:
-            return f.read()
+            content = f.read()
+        # Cap to stay within the local model's context (same as 5.0 read_file)
+        if len(content) > 6000:
+            content = content[:6000] + '\n[...truncated for context]'
+        return content
     except subprocess.CalledProcessError as e:
         return f"Error converting PDF: {e.stderr}"
     except FileNotFoundError:
@@ -180,7 +184,7 @@ Think carefully and use tools as needed. When you have enough information, provi
 class SimpleAgent:
     """A simple ReAct agent for PDF search."""
 
-    def __init__(self, model: str = "mistral-small3.2", max_turns: int = 10, verbose: bool = True):
+    def __init__(self, model: str = "gemma4", max_turns: int = 10, verbose: bool = True):
         self.model = model
         self.max_turns = max_turns
         self.verbose = verbose
@@ -268,13 +272,13 @@ def main():
         epilog="""
 Examples:
   uv run agentic_rag_cli.py "What is LoRA?"
-  uv run agentic_rag_cli.py "Summarize the PDFs" --model qwen3
+  uv run agentic_rag_cli.py "Summarize the PDFs" --model qwen3.8
   uv run agentic_rag_cli.py "Search for fine-tuning" --quiet
         """
     )
     parser.add_argument("query", help="Your question or task for the agent")
-    parser.add_argument("--model", "-m", default="mistral-small3.2",
-                        help="Ollama model to use (default: mistral-small3.2)")
+    parser.add_argument("--model", "-m", default="gemma4",
+                        help="Ollama model to use (default: gemma4)")
     parser.add_argument("--max-turns", "-t", type=int, default=10,
                         help="Maximum reasoning turns (default: 10)")
     parser.add_argument("--quiet", "-q", action="store_true",

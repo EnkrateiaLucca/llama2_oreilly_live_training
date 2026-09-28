@@ -5,12 +5,12 @@ from llama_index.core import SimpleDirectoryReader
 from llama_index.core import VectorStoreIndex
 import sys
 
-MODEL_NAME = "llama3.2"
+MODEL_NAME = "gemma4"
 EMBEDDING_MODEL_NAME = "BAAI/bge-small-en-v1.5"
 
 # Configure the LLM - Ollama runs locally on port 11434
 Settings.llm = Ollama(
-    model=MODEL_NAME,           # Use llama3.2 (3B params, good balance)
+    model=MODEL_NAME,           # Use gemma4 (course default, = gemma4:e4b)
     request_timeout=120.0,       # Timeout for generation
     temperature=0.1,             # Low temperature for factual responses
 )
@@ -28,7 +28,7 @@ print("LLM and Embedding model configured!")
 
 # 1. **Load** - Read the PDF document
 
-def load_pdf(pdf_path: str="./assets-resources/attention_paper.pdf"):
+def load_pdf(pdf_path: str="./assets-resources/pdf-test/attention_paper.pdf"):
     """Load the PDF document"""
     # Load the PDF - using the attention paper as our example
     documents = SimpleDirectoryReader(

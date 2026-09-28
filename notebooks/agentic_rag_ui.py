@@ -86,7 +86,11 @@ def read_full_pdf(pdf_path: str) -> str:
         )
 
         with open(text_file_path, 'r', encoding='utf-8', errors='ignore') as f:
-            return f.read()
+            content = f.read()
+        # Cap to stay within the local model's context (same as 5.0 read_file)
+        if len(content) > 6000:
+            content = content[:6000] + '\n[...truncated for context]'
+        return content
     except subprocess.CalledProcessError as e:
         return f"Error converting PDF: {e.stderr}"
     except FileNotFoundError:
@@ -271,7 +275,7 @@ def main():
 
         model = st.text_input(
             "Ollama Model",
-            value="mistral-small3.2",
+            value="gemma4",
             help="The Ollama model to use for the agent"
         )
 

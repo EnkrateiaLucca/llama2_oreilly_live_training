@@ -1,6 +1,6 @@
-# OReilly Live-Training: "Getting Started with Llama3"
+# OReilly Live-Training: "Getting Started with Llama and Other Local Models"
 
-Repository for the oreilly live training course: "Getting Started with Llama3": https://learning.oreilly.com/live-events/getting-started-with-llama-2/0636920098588/
+Repository for the oreilly live training course: "Getting Started with Llama and Other Local Models": https://learning.oreilly.com/live-events/getting-started-with-llama-2/0636920098588/
 
 ## Setup
 
@@ -13,7 +13,7 @@ Repository for the oreilly live training course: "Getting Started with Llama3": 
 - Create an environment: `conda create -n oreilly-llama3 python=3.10`
 - Activate your environment with: `conda activate oreilly-llama3`
 - Install requirements with: `pip install -r requirements/requirements.txt`
-- Setup your openai [API key](https://platform.openai.com/)
+- (Optional) Setup your openai [API key](https://platform.openai.com/). It's only needed for the cloud-comparison cells in `3.0-tool-calling-ollama.ipynb` and the live tool-calling demo (`live-demo-intro-agents-tool-calling.ipynb`); everything else runs locally.
 
 **Pip**
 
@@ -45,7 +45,7 @@ Repository for the oreilly live training course: "Getting Started with Llama3": 
     pip install -r requirements/requirements.txt
     ```
 
-4. Setup your openai [API key](https://platform.openai.com/)
+4. (Optional) Setup your openai [API key](https://platform.openai.com/). Only needed for the cloud-comparison cells in `3.0-tool-calling-ollama.ipynb` and the live tool-calling demo (`live-demo-intro-agents-tool-calling.ipynb`).
 
 Remember to deactivate the virtual environment once you're done by simply typing:
 ```bash
@@ -54,7 +54,7 @@ deactivate
 
 ## Setup your .env file
 
-- Change the `.env.example` file to `.env` and add your OpenAI API key.
+- Change the `.env.example` file to `.env` and add your OpenAI API key (optional; see above).
 
 ## To use this Environment with Jupyter Notebooks:
 
@@ -94,45 +94,39 @@ These notebooks follow a structured learning path from basics to advanced topics
 
    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/3.1-local-agents-intro.ipynb)
 
-6. [Local Agent from Scratch](notebooks/local-agent-from-scratch.ipynb) - Build a simple agent from scratch using tool calling
-
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/local-agent-from-scratch.ipynb)
-
 #### 4. Agentic RAG
 
-7. [Simple Agentic RAG](notebooks/4.0-simple-agentic-rag.ipynb) - Build a ReAct-based agentic RAG system from scratch
+6. [Simple Agentic RAG](notebooks/4.0-simple-agentic-rag.ipynb) - Build a ReAct-based agentic RAG system from scratch
 
    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/4.0-simple-agentic-rag.ipynb)
 
 #### 4.5 Local Agents
 
-8. [Useful Local Agents](notebooks/5.0-useful-local-agents.ipynb) - Run Hermes Agent with Gemma 4, vibe-check agentic task quality, and learn when to route to the cloud
+7. [Useful Local Agents](notebooks/5.0-useful-local-agents.ipynb) - Run Hermes Agent with Gemma 4, vibe-check agentic task quality, and learn when to route to the cloud
 
    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/5.0-useful-local-agents.ipynb)
 
 #### 5. Fine-Tuning
 
-9. [Fine-Tuning Llama 3: What You Need to Know](notebooks/6.0-fine-tuning-llama3-what-you-need-to-know.md) - Comprehensive guide to fine-tuning concepts (LoRA, QLoRA, PEFT)
+8. [Fine-Tuning Llama 3: What You Need to Know](notebooks/6.0-fine-tuning-llama3-what-you-need-to-know.md) - Comprehensive guide to fine-tuning concepts (LoRA, QLoRA, PEFT)
 
-10. [Fine-Tuning Walkthrough with Hugging Face](notebooks/6.1-fine-tuning-walkthrough-hugging-face.ipynb) - Practical fine-tuning implementation
+9. [Fine-Tuning Walkthrough with Hugging Face](notebooks/6.1-fine-tuning-walkthrough-hugging-face.ipynb) - Practical fine-tuning implementation
 
     [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/6.1-fine-tuning-walkthrough-hugging-face.ipynb)
 
-11. [Quantization Precision Format Code Explanation](notebooks/6.2-quantization-precision-format-code-explanation.ipynb) - Deep dive into model quantization
+10. [Quantization Precision Format Code Explanation](notebooks/6.2-quantization-precision-format-code-explanation.ipynb) - Deep dive into model quantization
 
     [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/6.2-quantization-precision-format-code-explanation.ipynb)
 
 #### 6. Advanced Topics
 
-12. [GUI for Llama 3 Options](notebooks/7.0-gui-for-llama3-options.ipynb) - Explore different GUI options for working with Llama models
+11. [GUI Options for Local Models](best-local-models-2026.md#deployment-tools) - LM Studio, Open WebUI (with the Docker command) and other front-ends for local models
 
-    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/7.0-gui-for-llama3-options.ipynb)
-
-13. [Best Local LLMs in Practice (2026 Edition)](notebooks/8.0-best-local-models-examples.ipynb) - Compare and explore the best local models available
+12. [Best Local LLMs in Practice (2026 Edition)](notebooks/8.0-best-local-models-examples.ipynb) - Compare and explore the best local models available
 
     [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/8.0-best-local-models-examples.ipynb)
 
-14. [vLLM Setup Guide](notebooks/vllm-setup-guide.ipynb) - Complete guide to setting up and using vLLM for high-performance inference
+13. [vLLM Setup Guide](notebooks/vllm-setup-guide.ipynb) - Complete guide to setting up and using vLLM for high-performance inference
 
     [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/llama2_oreilly_live_training/blob/main/notebooks/vllm-setup-guide.ipynb)
 
@@ -143,20 +137,4 @@ Older versions and experimental notebooks are available in the `notebooks/legacy
 ## Additional Resources
 
 ### Model Guides
-- **[LLM Model Sizes Guide](llm-model-sizes-guide.md)** - Comprehensive guide to different model sizes and their use cases
-- **[Best Local Models 2026](best-local-models-2026.md)** - Updated guide to the top-performing open-source models that can run locally with <64GB RAM, including Gemma 4, Qwen 3.6, DeepSeek, and others
-
-### Key Features of the 2025 Model Guide:
-- **Performance Benchmarks**: Latest benchmark scores for reasoning, coding, and multilingual tasks
-- **Hardware Requirements**: Detailed RAM and GPU requirements for each model
-- **Deployment Instructions**: Step-by-step setup for Ollama, LM Studio, and other tools  
-- **Use Case Recommendations**: Which models work best for specific applications
-- **Model Comparisons**: Side-by-side analysis of capabilities and trade-offs
-
-### Top Models Covered:
-- **Gemma 4** (Google DeepMind) - Course default; multimodal, Apache 2.0, all compute tiers
-- **Qwen 3.6 27B** (Alibaba) - Best open model for coding and agentic tasks
-- **DeepSeek-R1 32B** - Frontier-level reasoning, MIT license
-- **Qwen2.5 Series** (Alibaba) - Strong multilingual and reasoning capabilities
-- **DeepSeek-V3 & DeepSeek-Coder** - Specialized programming and development
-- **Mixtral 8x22B** - Efficient Mixture of Experts architecture
+- **[Best Local Models 2026](best-local-models-2026.md)** - Which open models to run locally by hardware tier (Gemma 4, Qwen 3.8, DeepSeek-R1, Phi-4 and others), with deployment tools and use-case picks

@@ -22,7 +22,7 @@
     
     # Getting Started with Local Models (Gemma 4, Llama, and More)
     ## Lucas Soares
-    ### 05-12-2026
+    ### October 2026
     
     ---
     # Methodology Notes
@@ -97,11 +97,6 @@
     <img src="../notebooks/assets-resources/llm-prob-distributions-context.png" style="width:100%; margin-top: 40pt;">
 
     ---
-    # Introduction to Llama 3
-
-    <img src="../notebooks/assets-resources/llama3-intro.png" width="90%">
-
-    ---
     # Open Models: How We Got Here
 
     | Date | Model | Why It Mattered |
@@ -111,6 +106,7 @@
     | Jan 2025 | DeepSeek-R1 | Frontier-level reasoning, MIT license |
     | Apr 2025 | Llama 4 / Qwen 3 | MoE architectures go mainstream |
     | **Apr 2026** | **Gemma 4** | **All compute tiers · multimodal · Apache 2.0** |
+    | Aug 2026 | Qwen 3.8 27B | Dense 27B, single 24 GB GPU, Apache 2.0 — local coding/agent pick |
 
     --
 
@@ -121,16 +117,17 @@
 
     | Model | RAM / VRAM | Best For | License |
     |-------|-----------|----------|---------|
-    | **Gemma 4 26B (MoE)** | 8 GB VRAM | General + multimodal | Apache 2.0 |
-    | **Gemma 4 31B (dense)** | 20 GB VRAM | Best open general model | Apache 2.0 |
-    | **Qwen 3.6 27B** | 17 GB VRAM | Coding + agentic | Apache 2.0 |
+    | **Gemma 4 12B** | 16 GB laptop / unified memory | Text + image + audio* | Apache 2.0 |
+    | **Gemma 4 26B (MoE)** | ~18 GB VRAM (19 GB download) | General + multimodal | Apache 2.0 |
+    | **Gemma 4 31B (dense)** | 20 GB VRAM | Flagship Gemma 4: general + multimodal | Apache 2.0 |
+    | **Qwen 3.8 27B** | 18 GB VRAM | Coding + agentic | Apache 2.0 |
     | **Llama 3.3 70B** | 43 GB VRAM | Coding, instruction | Llama Community |
     | **DeepSeek-R1 32B** | 20 GB VRAM | Math + chain-of-thought | MIT |
     | **Phi-4 14B** | 9 GB VRAM | Reasoning, STEM, small GPU | MIT |
     | **Qwen3 4B** | CPU only | General, fast, multilingual | Apache 2.0 |
 
     <p style="font-size: 14px; margin-top: 20px;">
-      Source: Artificial Analysis Intelligence Index + Ollama library download counts, May 2026
+      Source: Ollama library, September 2026 · *audio via HF Transformers, not Ollama
     </p>
 
     ---
@@ -139,11 +136,11 @@
 
     --
 
-    - **All compute tiers** — E2B and E4B run CPU-only; 26B MoE fits 8 GB VRAM; 31B dense for prosumer GPUs
+    - **All compute tiers** — E2B/E4B run CPU-only; 12B fits 16 GB laptops; 26B MoE / 31B for 24 GB GPUs
 
     --
 
-    - **Multimodal by default** — image and audio input across all Gemma 4 variants, no separate model needed
+    - **Multimodal by default** — image input on every size; audio on E2B, E4B and 12B (via HF Transformers, not Ollama)
 
     --
 
@@ -151,7 +148,7 @@
 
     --
 
-    - **Top benchmark quality** — Gemma 4 31B ranks #3 among all open-weight models on Chatbot Arena
+    - **Quality** — strong for its size
 
     --
 
@@ -160,8 +157,9 @@
     --
 
     ```bash
-    ollama pull gemma4:26b   # consumer GPU (8 GB VRAM)
-    ollama pull gemma4:e4b   # CPU-only students
+    ollama pull gemma4:26b   # 24 GB GPU
+    ollama pull gemma4:12b   # 16 GB laptop
+    ollama pull gemma4:e4b   # CPU-only
     ```
 
     ---
@@ -228,34 +226,34 @@
     
     ---
     <img src="../notebooks/assets-resources/rag-llama3/rag-llama3.001.jpeg" style="width: 130%; margin-left:-100pt";>
-    <p style="font-size: 14px; margin-top:50pt;">
-        <a href='https://python.langchain.com/docs/use_cases/question_answering/'>Langchain Docs</a>
+    <p style="font-size: 14px; margin-top:20pt;">
+        <a href='https://docs.langchain.com/oss/python/langchain/knowledge-base'>Langchain Docs</a>
     </p>
     ---
     <img src="../notebooks/assets-resources/rag-llama3/rag-llama3.002.jpeg" style="width: 130%; margin-left:-100pt";>
-    <p style="font-size: 14px; margin-top:50pt;">
-        <a href='https://python.langchain.com/docs/use_cases/question_answering/'>Langchain Docs</a>
+    <p style="font-size: 14px; margin-top:20pt;">
+        <a href='https://docs.langchain.com/oss/python/langchain/knowledge-base'>Langchain Docs</a>
     </p>
     ---
     <img src="../notebooks/assets-resources/rag-llama3/rag-llama3.004.jpeg" style="width: 130%; margin-left:-100pt";>
-    <p style="font-size: 14px; margin-top:50pt;">
-        <a href='https://python.langchain.com/docs/use_cases/question_answering/'>Langchain Docs</a>
+    <p style="font-size: 14px; margin-top:20pt;">
+        <a href='https://docs.langchain.com/oss/python/langchain/knowledge-base'>Langchain Docs</a>
     </p>
     ---
     <img src="../notebooks/assets-resources/rag-llama3/rag-llama3.005.jpeg" style="width: 130%; margin-left:-100pt";>
-    <p style="font-size: 14px; margin-top:50pt;">
-        <a href='https://python.langchain.com/docs/use_cases/question_answering/'>Langchain Docs</a>
+    <p style="font-size: 14px; margin-top:20pt;">
+        <a href='https://docs.langchain.com/oss/python/langchain/knowledge-base'>Langchain Docs</a>
     </p>
     ---
     <img src="../notebooks/assets-resources/rag-llama3/rag-llama3.006.jpeg" style="width: 130%; margin-left:-100pt";>
-    <p style="font-size: 14px; margin-top:50pt;">
-        <a href='https://python.langchain.com/docs/use_cases/question_answering/'>Langchain Docs</a>
+    <p style="font-size: 14px; margin-top:20pt;">
+        <a href='https://docs.langchain.com/oss/python/langchain/knowledge-base'>Langchain Docs</a>
     </p>
     ---
     <img src="../notebooks/assets-resources/rag-llama3/rag-llama3.007.jpeg" style="width: 130%; margin-left:-100pt";>
 
-    <p style="font-size: 14px; margin-top:50pt;">
-      <a href='https://python.langchain.com/docs/use_cases/question_answering/'>Langchain Docs</a>
+    <p style="font-size: 14px; margin-top:20pt;">
+      <a href='https://docs.langchain.com/oss/python/langchain/knowledge-base'>Langchain Docs</a>
     </p>
 
     ---
@@ -345,7 +343,7 @@
 
     # Hermes Agent — Full Local Agent Workbench
 
-    <img src="../notebooks/assets-resources/hermes-agent-ui.png" style="width: 42%; display: block; margin: 0 auto 15px auto;">
+    <img src="../notebooks/assets-resources/hermes-agent-ui.png" style="width: 30%; display: block; margin: 0 auto 8px auto;">
 
     - Auto-detects any model running locally — no manual config per model
 
@@ -355,13 +353,14 @@
 
     --
 
-    - **118 bundled skills** — web search, file ops, calendar, notes, code execution
+    - Bundled + self-generated skills — web search, file ops, calendar, notes, code
 
     --
 
-    - Persistent memory across sessions + autonomous multi-step task execution
+    - Persistent memory + autonomous multi-step tasks
+    - One-command setup: `ollama launch hermes`
 
-    <p style="font-size: 14px; margin-top: 15px;">
+    <p style="font-size: 14px; margin-top: 5px;">
         <a href='https://hermes-agent.nousresearch.com/'>hermes-agent.nousresearch.com</a>
     </p>
 
@@ -382,15 +381,15 @@
     --
 
     3. Score each output on 3 axes:
-       - **Completion** — did the agent finish the task goal? (0 = no, 1 = partial, 2 = yes)
-       - **Tool-use correctness** — did it call the right tool with the right arguments?
-       - **Hallucination** — did it stay grounded, or invent facts not in the context?
+       - **Completion** — task done? (0 = no, 1 = partial, 2 = yes)
+       - **Tool-use correctness** — right tool, right args?
+       - **Hallucination** — grounded, or invented facts?
 
     --
 
     4. **Decide**: local vs. frontier
        - Local wins → use it; set up routing rule
-       - Local fails → identify which axis and route those cases to a stronger model
+       - Local fails → find the weak axis; route those cases to a stronger model
 
     --
 
@@ -495,6 +494,10 @@
     6. [Embeddings + Parquet for Small Projects](https://minimaxir.com/2025/02/embeddings-parquet/)
     7. [Text Chunking in RAG](https://www.youtube.com/watch?v=GYj4Ay7SdWw)
 
+    ---
+
+    # References (cont.)
+
     **Fine-Tuning**
     8. [Fine Tuning Video](https://www.youtube.com/watch?v=-hYqt8M9u_M&t=604s)
     9. [Generating Synthetic Data](https://eugeneyan.com/writing/synthetic/)
@@ -509,8 +512,6 @@
     14. [Llama Cookbook – Finetuning](https://github.com/meta-llama/llama-cookbook/tree/main/getting-started/finetuning)
     15. [Llama 3 Paper (arXiv)](https://arxiv.org/pdf/2408.13296)
     16. [Embeddings + Llama by Simon Willison](https://simonwillison.net/2023/Oct/23/embeddings/#answering-questions-with-retrieval-augmented-generation)
-
-    ---
 
 
 </textarea>

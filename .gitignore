@@ -10,6 +10,18 @@ oreilly-llama3/
 __pycache__/
 .ipynb_checkpoints/
 notebooks/storage/*
+# pdftotext cache written by 4.0 / agentic_rag_*.py (already-tracked inputs there stay tracked)
+notebooks/text_files/
 lora_summary.txt
 recent_models.md
 lora_evolution.md
+
+# Course process artifacts (not student-facing content)
+Plans/
+research/
+walkthrough.md
+
+# OS / browser / local vector-store artifacts
+.DS_Store
+*.sqlite3
+*.crdownload
