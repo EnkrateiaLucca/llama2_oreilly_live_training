@@ -18,3 +18,8 @@ lora_evolution.md
 Plans/
 research/
 walkthrough.md
+
+# OS / browser / local vector-store artifacts
+.DS_Store
+*.sqlite3
+*.crdownload
