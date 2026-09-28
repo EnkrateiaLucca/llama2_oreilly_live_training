@@ -2,8 +2,7 @@ import ollama
 
 
 response = ollama.chat(
-    # model=""
-    model="llama3.2",
+    model="gemma4",
     messages=[
         {'role': 'system', 'content': 'You are a helpful assistant \
             that helps users craft and send their emails using the send_email tool.'},

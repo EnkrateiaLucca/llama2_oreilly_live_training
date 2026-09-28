@@ -177,7 +177,7 @@ async def use_sample_document():
 async def query_document(
     session_id: str = Form(...),
     query: str = Form(...),
-    model: str = Form("llama3.2"),
+    model: str = Form("gemma4"),
     temperature: float = Form(0.1),
     top_k: int = Form(3),
 ):
@@ -629,11 +629,10 @@ HTML_CONTENT = """
 
             <label for="model">Ollama Model</label>
             <select id="model">
-                <option value="llama3.2" selected>llama3.2</option>
-                <option value="llama3.1">llama3.1</option>
-                <option value="mistral">mistral</option>
-                <option value="phi3">phi3</option>
-                <option value="gemma2">gemma2</option>
+                <option value="gemma4" selected>gemma4</option>
+                <option value="gemma4:e2b">gemma4:e2b</option>
+                <option value="gemma4:12b">gemma4:12b</option>
+                <option value="llama3.2">llama3.2</option>
             </select>
 
             <label for="temperature">Temperature: <span class="range-value" id="temp-value">0.1</span></label>

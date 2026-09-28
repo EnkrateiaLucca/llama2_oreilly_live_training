@@ -84,4 +84,4 @@ async def run(model: str):
 
 
 # Run the async function
-asyncio.run(run('llama3.1'))
+asyncio.run(run('gemma4'))

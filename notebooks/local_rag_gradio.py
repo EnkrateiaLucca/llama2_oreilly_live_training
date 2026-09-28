@@ -179,7 +179,7 @@ def create_demo() -> gr.Blocks:
             # 📚 Local RAG Chat
             Ask questions about your PDF documents using a fully local AI pipeline.
 
-            **Requirements:** [Ollama](https://ollama.ai) installed with model pulled (e.g., `ollama pull llama3.2`)
+            **Requirements:** [Ollama](https://ollama.ai) installed with model pulled (e.g., `ollama pull gemma4`)
             """
         )
 
@@ -189,8 +189,8 @@ def create_demo() -> gr.Blocks:
                 gr.Markdown("### ⚙️ Configuration")
 
                 model_dropdown = gr.Dropdown(
-                    choices=["llama3.2", "llama3.1", "mistral", "phi3", "gemma2"],
-                    value="llama3.2",
+                    choices=["gemma4", "gemma4:e2b", "gemma4:12b", "llama3.2"],
+                    value="gemma4",
                     label="Ollama Model",
                     info="Select the model for generation",
                 )

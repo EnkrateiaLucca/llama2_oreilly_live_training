@@ -49,7 +49,7 @@ with st.sidebar:
     # Model selection
     ollama_model = st.selectbox(
         "Ollama Model",
-        options=["llama3.2", "llama3.1", "mistral", "phi3", "gemma2"],
+        options=["gemma4", "gemma4:e2b", "gemma4:12b", "llama3.2"],
         index=0,
         help="Select the Ollama model to use for generation",
     )
@@ -94,7 +94,7 @@ with st.sidebar:
     st.markdown("""
     **Requirements:**
     - [Ollama](https://ollama.ai) installed
-    - Model pulled: `ollama pull llama3.2`
+    - Model pulled: `ollama pull gemma4`
     """)
 
 

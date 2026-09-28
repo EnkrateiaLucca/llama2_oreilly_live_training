@@ -2,7 +2,7 @@ import ollama
 from langchain_community.document_loaders import PyPDFLoader
 import sys
 
-MODEL = "llama3.1:8b"
+MODEL = "gemma4"
 SYSTEM_PROMPT = """
 You are a summarization engine.
 You take in documents and output bullet points
