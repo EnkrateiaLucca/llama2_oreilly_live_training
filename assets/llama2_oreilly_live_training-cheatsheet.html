@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started with Llama and Other Local Models — OReilly Cheatsheet</title>
+    <style>
+        /* ========================================
+           MODULAR GRID/CARD LAYOUT — PRINT OPTIMIZED
+           A4 (210mm × 297mm), 18mm margins
+           ======================================== */
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        @page {
+            size: A4;
+            margin: 14mm 16mm;
+            @top-left { content: none; }
+            @top-center { content: none; }
+            @top-right { content: none; }
+            @bottom-left { content: none; }
+            @bottom-center { content: none; }
+            @bottom-right { content: none; }
+        }
+
+        body {
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            font-size: 9.5pt;
+            line-height: 1.45;
+            color: #000;
+            background: #fff;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 14mm 16mm;
+        }
+
+        /* ---- HEADER ---- */
+        .page-header {
+            text-align: center;
+            padding-bottom: 10pt;
+            margin-bottom: 12pt;
+            border-bottom: 3px solid #000;
+        }
+        .page-header h1 {
+            font-size: 22pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2pt;
+            margin-bottom: 4pt;
+        }
+        .page-header .subtitle {
+            font-size: 11pt;
+            color: #333;
+            margin-bottom: 4pt;
+        }
+        .page-header .meta {
+            font-size: 8.5pt;
+            color: #666;
+        }
+
+        /* ---- SECTION TITLES ---- */
+        .section-title {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 12pt 0 8pt 0;
+            padding: 5pt 10pt;
+            background: #000;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1pt;
+            break-after: avoid;
+        }
+
+        .section-title-accent {
+            font-size: 12pt;
+            font-weight: 700;
+            margin: 10pt 0 6pt 0;
+            padding: 4pt 8pt;
+            background: #333;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.5pt;
+            break-after: avoid;
+        }
+
+        /* ---- GRIDS ---- */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8pt;
+            margin-bottom: 10pt;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8pt;
+            margin-bottom: 10pt;
+        }
+        .grid-3-1 {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 8pt;
+            margin-bottom: 10pt;
+        }
+
+        /* ---- CARDS ---- */
+        .card {
+            border: 2px solid #000;
+            padding: 8pt;
+            background: #fff;
+            break-inside: avoid;
+        }
+        .card-title {
+            font-size: 10.5pt;
+            font-weight: 700;
+            margin-bottom: 6pt;
+            padding-bottom: 4pt;
+            border-bottom: 1px solid #ccc;
+        }
+        .card-content { font-size: 9pt; }
+        .card ul, .card ol { margin-left: 14pt; }
+        .card li { margin-bottom: 3pt; }
+
+        .card-light {
+            border: 1px solid #999;
+            background: #f9f9f9;
+            padding: 8pt;
+            break-inside: avoid;
+        }
+        .card-light .card-title {
+            font-size: 10pt;
+            font-weight: 700;
+            margin-bottom: 5pt;
+            padding-bottom: 3pt;
+            border-bottom: 1px solid #ccc;
+        }
+
+        /* ---- CODE CARDS ---- */
+        .code-card {
+            border: 2px solid #000;
+            background: #fff;
+            padding: 0;
+            break-inside: avoid;
+        }
+        .code-card-header {
+            background: #000;
+            color: #fff;
+            padding: 4pt 8pt;
+            font-weight: 700;
+            font-size: 9.5pt;
+        }
+        .code-card pre {
+            margin: 0;
+            padding: 8pt;
+            font-family: 'Courier New', monospace;
+            font-size: 7.8pt;
+            line-height: 1.35;
+            background: #f5f5f5;
+            overflow: hidden;
+            white-space: pre-wrap;
+            word-break: break-all;
+            overflow-wrap: break-word;
+        }
+
+        /* ---- TABLE CARDS ---- */
+        .table-card {
+            border: 2px solid #000;
+            background: #fff;
+            padding: 0;
+            break-inside: avoid;
+            margin-bottom: 8pt;
+        }
+        .table-card-header {
+            background: #000;
+            color: #fff;
+            padding: 4pt 8pt;
+            font-weight: 700;
+            font-size: 10pt;
+        }
+        .table-card table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 8.5pt;
+        }
+        .table-card th {
+            background: #eee;
+            font-weight: 700;
+            text-align: left;
+            padding: 5pt 7pt;
+            border-bottom: 2px solid #000;
+        }
+        .table-card td {
+            padding: 4pt 7pt;
+            border-bottom: 1px solid #ddd;
+            vertical-align: top;
+        }
+        .table-card tr:last-child td { border-bottom: none; }
+        .table-card code {
+            background: #eee;
+            padding: 1pt 3pt;
+            font-family: 'Courier New', monospace;
+            font-size: 7.8pt;
+        }
+
+        /* ---- INFO BOXES ---- */
+        .info-box {
+            border: 1.5px solid #666;
+            border-left: 4px solid #000;
+            padding: 7pt 10pt;
+            margin: 8pt 0;
+            background: #f7f7f7;
+            break-inside: avoid;
+        }
+        .info-box-title {
+            font-weight: 700;
+            font-size: 10pt;
+            margin-bottom: 4pt;
+        }
+        .info-box p, .info-box ul { font-size: 9pt; }
+        .info-box ul { margin-left: 14pt; }
+        .info-box li { margin-bottom: 2pt; }
+
+        /* ---- COMPARISON ---- */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8pt;
+            margin-bottom: 10pt;
+        }
+        .comparison-item {
+            border: 2px solid #000;
+            padding: 8pt;
+            background: #fff;
+            break-inside: avoid;
+        }
+        .comparison-header {
+            font-weight: 700;
+            font-size: 10.5pt;
+            margin-bottom: 6pt;
+            padding-bottom: 4pt;
+            border-bottom: 2px solid #000;
+            text-align: center;
+        }
+        .comparison-item ul { margin-left: 13pt; font-size: 9pt; }
+        .comparison-item li { margin-bottom: 3pt; }
+
+        /* ---- STEP CONTAINER ---- */
+        .step-container {
+            display: flex;
+            gap: 6pt;
+            margin: 8pt 0;
+            align-items: stretch;
+            break-inside: avoid;
+        }
+        .step {
+            flex: 1;
+            border: 2px solid #000;
+            padding: 7pt;
+            text-align: center;
+            background: #fff;
+            break-inside: avoid;
+        }
+        .step-number {
+            background: #000;
+            color: #fff;
+            width: 22pt;
+            height: 22pt;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 5pt auto;
+            font-weight: 700;
+            font-size: 11pt;
+        }
+        .step-title { font-weight: 700; font-size: 9pt; margin-bottom: 3pt; }
+        .step-content { font-size: 8pt; }
+
+        /* ---- KEY POINTS ---- */
+        .key-points {
+            border: 2px solid #000;
+            background: #f5f5f5;
+            padding: 10pt;
+            margin: 10pt 0;
+            break-inside: avoid;
+        }
+        .key-points-title {
+            font-weight: 700;
+            font-size: 11pt;
+            margin-bottom: 7pt;
+            text-transform: uppercase;
+        }
+        .key-points ul { margin-left: 14pt; }
+        .key-points li { margin-bottom: 4pt; font-size: 9pt; }
+
+        /* ---- DEFINITION CARD ---- */
+        .definition-card {
+            border: 2px solid #000;
+            padding: 7pt;
+            background: #fff;
+            break-inside: avoid;
+        }
+        .term { font-weight: 700; font-size: 10pt; margin-bottom: 3pt; }
+        .definition { font-size: 8.5pt; color: #333; }
+
+        /* ---- FULL-WIDTH CODE ---- */
+        .full-code-card {
+            border: 2px solid #000;
+            background: #fff;
+            padding: 0;
+            break-inside: avoid;
+            margin-bottom: 8pt;
+        }
+        .full-code-card .code-card-header {
+            background: #000;
+            color: #fff;
+            padding: 4pt 8pt;
+            font-weight: 700;
+            font-size: 9.5pt;
+        }
+        .full-code-card pre {
+            margin: 0;
+            padding: 8pt;
+            font-family: 'Courier New', monospace;
+            font-size: 7.8pt;
+            line-height: 1.35;
+            background: #f5f5f5;
+            overflow: hidden;
+            white-space: pre-wrap;
+            word-break: break-all;
+            overflow-wrap: break-word;
+        }
+
+        /* ---- INLINE CODE ---- */
+        code {
+            background: #eee;
+            padding: 1pt 3pt;
+            font-family: 'Courier New', monospace;
+            font-size: 8pt;
+        }
+
+        /* ---- FOOTER ---- */
+        footer {
+            margin-top: 14pt;
+            padding-top: 8pt;
+            border-top: 2px solid #000;
+            text-align: center;
+            font-size: 7.5pt;
+            color: #666;
+        }
+
+        /* ---- UTILITY ---- */
+        .mb-small { margin-bottom: 6pt; }
+        .mb-medium { margin-bottom: 10pt; }
+        .highlight-row td { background: #f0f0f0; font-weight: 700; }
+
+        /* ---- PRINT ---- */
+        @media print {
+            body { margin: 0; padding: 14mm 16mm; }
+            .card, .card-light, .code-card, .table-card, .info-box,
+            .comparison-item, .key-points, .step, .definition-card,
+            .full-code-card { break-inside: avoid; }
+            .section-title, .section-title-accent { break-after: avoid; }
+            a { text-decoration: none; color: #000; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <div class="page-header">
+        <h1>Getting Started with Llama and Other Local Models</h1>
+        <div class="subtitle">OReilly Live Training — Quick Reference Cheatsheet</div>
+        <div class="meta">Gemma 4 · Ollama · RAG · Tool Calling · Agents · Fine-Tuning · 2026 Edition · Updated October 2026</div>
+    </div>
+
+    <!-- ===== SECTION 1: SETUP ===== -->
+    <div class="section-title">Setup &amp; Environment</div>
+
+    <div class="grid-2">
+        <div class="code-card">
+            <div class="code-card-header">Environment (conda)</div>
+            <pre><code>conda create -n oreilly-llama3 python=3.10
+conda activate oreilly-llama3
+pip install -r requirements/requirements.txt
+cp .env.example .env  # key optional
+
+# Jupyter
+pip install jupyter
+python3 -m ipykernel install \
+  --user --name=oreilly-llama3
+jupyter lab</code></pre>
+        </div>
+        <div class="code-card">
+            <div class="code-card-header">Install Ollama &amp; Pull Models</div>
+            <pre><code># Install: https://ollama.com/download
+ollama pull gemma4      # = e4b 9.6GB
+ollama pull gemma4:26b  # 24 GB GPU
+ollama pull gemma4:12b  # 16 GB laptop
+ollama pull gemma4:e4b  # CPU-only
+ollama serve            # :11434
+ollama list             # installed
+ollama run gemma4       # chat
+ollama rm modelname     # remove</code></pre>
+        </div>
+    </div>
+
+    <!-- ===== SECTION 2: OLLAMA QUICKSTART ===== -->
+    <div class="section-title">1.0 — Quickstart with Ollama</div>
+
+    <div class="grid-2">
+        <div class="code-card">
+            <div class="code-card-header">Python API</div>
+            <pre><code>import ollama
+
+# Simple chat
+response = ollama.chat(
+    model="gemma4",
+    messages=[{
+        "role": "user",
+        "content": "Explain RAG in 2 sentences."
+    }]
+)
+print(response['message']['content'])
+
+# Streaming
+stream = ollama.chat(
+    model="gemma4",
+    messages=[{"role": "user", "content": "Hi"}],
+    stream=True
+)
+for chunk in stream:
+    print(chunk['message']['content'], end='')</code></pre>
+        </div>
+        <div class="code-card">
+            <div class="code-card-header">Reusable Helper</div>
+            <pre><code>import ollama
+
+def chat(prompt, model="gemma4",
+         system=None):
+    messages = []
+    if system:
+        messages.append({
+            "role": "system",
+            "content": system
+        })
+    messages.append({
+        "role": "user",
+        "content": prompt
+    })
+    resp = ollama.chat(
+        model=model,
+        messages=messages
+    )
+    return resp['message']['content']
+
+# Usage
+answer = chat("What is LoRA?")
+print(answer)</code></pre>
+        </div>
+    </div>
+
+    <!-- ===== SECTION 3: RAG ===== -->
+    <div class="section-title">2.0 — Introduction to RAG</div>
+
+    <div class="step-container">
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-title">Load</div>
+            <div class="step-content">Load documents from files / URLs</div>
+        </div>
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-title">Chunk</div>
+            <div class="step-content">Split into overlapping segments</div>
+        </div>
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-title">Embed</div>
+            <div class="step-content">Convert chunks to dense vectors</div>
+        </div>
+        <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-title">Index</div>
+            <div class="step-content">Store in vector database</div>
+        </div>
+        <div class="step">
+            <div class="step-number">5</div>
+            <div class="step-title">Retrieve</div>
+            <div class="step-content">Find similar chunks (cosine sim)</div>
+        </div>
+        <div class="step">
+            <div class="step-number">6</div>
+            <div class="step-title">Generate</div>
+            <div class="step-content">LLM answers using retrieved context</div>
+        </div>
+    </div>
+
+    <div class="grid-3">
+        <div class="definition-card">
+            <div class="term">Embeddings</div>
+            <div class="definition">Dense vectors capturing semantic meaning. Similar text → similar vectors. Course uses local <code>BAAI/bge-small-en-v1.5</code> (no API key).</div>
+        </div>
+        <div class="definition-card">
+            <div class="term">Chunking</div>
+            <div class="definition">Split docs into overlapping segments. LlamaIndex default: 1024 tokens, 20-token overlap.</div>
+        </div>
+        <div class="definition-card">
+            <div class="term">Chunk Size Trade-off</div>
+            <div class="definition">Smaller → precise retrieval, less context. Larger → more context, noisier results.</div>
+        </div>
+    </div>
+
+    <!-- ===== SECTION 4: LOCAL RAG ===== -->
+    <div class="section-title">2.1 — Local RAG with Gemma 4 + LlamaIndex</div>
+
+    <div class="grid-2">
+        <div class="code-card">
+            <div class="code-card-header">Build Index &amp; Query</div>
+            <pre><code>from llama_index.llms.ollama import Ollama
+from llama_index.embeddings.huggingface \
+    import HuggingFaceEmbedding
+from llama_index.core import (
+    VectorStoreIndex,
+    SimpleDirectoryReader, Settings
+)
+
+Settings.llm = Ollama(
+    model="gemma4",
+    request_timeout=120.0
+)
+Settings.embed_model = HuggingFaceEmbedding(
+    model_name="BAAI/bge-small-en-v1.5"
+)
+docs = SimpleDirectoryReader("data/").load_data()
+index = VectorStoreIndex.from_documents(docs)
+engine = index.as_query_engine(
+    similarity_top_k=3
+)
+response = engine.query("What is LoRA?")</code></pre>
+        </div>
+        <div class="code-card">
+            <div class="code-card-header">Inspect Sources &amp; Persist</div>
+            <pre><code># View retrieved source chunks
+for node in response.source_nodes:
+    print(node.text[:200])
+    print(node.metadata)
+
+# Persist index to disk
+index.storage_context.persist(
+    persist_dir="./storage"
+)
+
+# Reload from disk
+from llama_index.core import (
+    StorageContext, load_index_from_storage
+)
+ctx = StorageContext.from_defaults(
+    persist_dir="./storage"
+)
+index = load_index_from_storage(ctx)</code></pre>
+        </div>
+    </div>
+
+    <div class="table-card mb-medium">
+        <div class="table-card-header">RAG Stack</div>
+        <table>
+            <thead><tr><th>Component</th><th>Tool</th><th>Why</th></tr></thead>
+            <tbody>
+                <tr><td>LLM</td><td><code>Ollama (gemma4)</code></td><td>Local, no API key, easy model management</td></tr>
+                <tr><td>Embeddings</td><td><code>BAAI/bge-small-en-v1.5</code></td><td>384-dim, fast, runs locally (HuggingFace)</td></tr>
+                <tr><td>Orchestration</td><td>LlamaIndex</td><td>Handles chunking, indexing, retrieval</td></tr>
+                <tr><td>Vector Store</td><td>In-memory / ChromaDB / FAISS</td><td>In-memory for dev, ChromaDB or FAISS for production</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ===== SECTION 5: TOOL CALLING ===== -->
+    <div class="section-title">3.0 — Tool Calling with Ollama</div>
+
+    <div class="grid-2">
+        <div class="code-card">
+            <div class="code-card-header">Define &amp; Register Tools</div>
+            <pre><code>import ollama
+
+def get_weather(city: str) -> str:
+    return f"Weather in {city}: 22°C sunny"
+
+tools = [{
+    "type": "function",
+    "function": {
+        "name": "get_weather",
+        "description": "Get weather for a city",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "city": {"type": "string"}
+            },
+            "required": ["city"]
+        }
+    }
+}]
+
+response = ollama.chat(
+    model="gemma4",
+    messages=[{
+        "role": "user",
+        "content": "Weather in Paris?"
+    }],
+    tools=tools
+)</code></pre>
+        </div>
+        <div class="code-card">
+            <div class="code-card-header">Execute Tool Calls</div>
+            <pre><code>tools_map = {"get_weather": get_weather}
+
+if response.message.tool_calls:
+    for tc in response.message.tool_calls:
+        fn = tools_map[tc.function.name]
+        result = fn(**tc.function.arguments)
+
+        # Feed result back to model
+        messages = [
+            response.message,
+            {
+                "role": "tool",
+                "content": str(result),
+                "name": tc.function.name
+            }
+        ]
+        final = ollama.chat(
+            model="gemma4",
+            messages=messages
+        )
+        print(final.message.content)</code></pre>
+        </div>
+    </div>
+
+    <!-- ===== SECTION 6: AGENTS ===== -->
+    <div class="section-title">3.1 — Local Agents: Structured Outputs → Tool Calling</div>
+
+    <div class="grid-2">
+        <div class="code-card">
+            <div class="code-card-header">Structured Outputs (Pydantic)</div>
+            <pre><code>from pydantic import BaseModel
+import ollama
+
+class Task(BaseModel):
+    title: str
+    priority: str   # high/medium/low
+    estimated_hours: int
+
+response = ollama.chat(
+    model="gemma4",
+    messages=[{
+        "role": "user",
+        "content": "Create a task to build login page"
+    }],
+    format=Task.model_json_schema()
+)
+task = Task.model_validate_json(
+    response.message.content
+)
+print(task.title, task.priority)</code></pre>
+        </div>
+        <div class="code-card">
+            <div class="code-card-header">Agent Concepts Summary</div>
+            <pre><code># Agent Loop pattern:
+# User → LLM decides tool → Execute tool
+# → Feed result back → LLM final response
+
+# Concept        Ollama Feature
+# -----------   --------------------------
+# Structured    format=Schema.model_json_schema()
+# Outputs
+#
+# Tool Calling  tools=[{type, function...}]
+#               (LLM decides which to call)
+#
+# Agent Loop    Combine both:
+#               1. Send messages + tools
+#               2. Execute tool_calls
+#               3. Append tool results
+#               4. Re-call chat() until
+#                  no tool_calls remain</code></pre>
+        </div>
+    </div>
+
+    <!-- ===== SECTION 7: AGENTIC RAG ===== -->
+    <div class="section-title">4.0 — Simple Agentic RAG: ReAct Pattern</div>
+
+    <div class="full-code-card">
+        <div class="code-card-header">Simple ReAct Agent (Reason → Act → Observe loop)</div>
+        <pre><code>import ollama
+
+class SimpleAgent:
+    def __init__(self, model="gemma4", tools=None, tools_map=None, max_turns=10):
+        self.model, self.tools = model, tools or []
+        self.tools_map, self.max_turns = tools_map or {}, max_turns
+        self.messages = []
+
+    def run(self, user_input: str) -> str:
+        self.messages.append({"role": "user", "content": user_input})
+        for turn in range(self.max_turns):
+            response = ollama.chat(model=self.model, messages=self.messages, tools=self.tools)
+            if not response.message.tool_calls:
+                return response.message.content           # No tool call = final answer
+            self.messages.append(response.message)
+            for tc in response.message.tool_calls:        # Execute each tool
+                result = self.tools_map[tc.function.name](**tc.function.arguments)
+                self.messages.append({"role": "tool", "content": str(result), "name": tc.function.name})
+        return "Max turns reached."
+
+# Extend by: adding tools, adjusting max_turns, custom system prompt, adding memory</code></pre>
+    </div>
+
+    <div class="info-box">
+        <div class="info-box-title">ReAct Loop: Reason → Act → Observe (repeat until done)</div>
+        <ul>
+            <li><strong>Turn 1:</strong> Agent receives query, calls tool (e.g. <code>find_pdf_files</code>) to discover PDFs, then <code>search_pdf</code></li>
+            <li><strong>Turn N:</strong> Agent receives tool results, may call more tools or synthesise final answer</li>
+            <li><strong>Done:</strong> When LLM returns a response with no <code>tool_calls</code></li>
+        </ul>
+    </div>
+
+    <!-- ===== SECTION 8: USEFUL LOCAL AGENTS ===== -->
+    <div class="section-title">5.0 — Useful Local Agents: When Local vs Cloud</div>
+
+    <div class="comparison-grid">
+        <div class="comparison-item">
+            <div class="comparison-header">Local Agent ✓ Use When…</div>
+            <ul>
+                <li>Privacy matters — data must stay on device</li>
+                <li>Cost control — no per-token billing</li>
+                <li>Single-tool chains with deterministic output</li>
+                <li>Private document analysis</li>
+                <li>Offline / air-gapped environments</li>
+                <li>Hermes Agent: <code>ollama launch hermes</code> — agents need ≥64K ctx: <code>OLLAMA_CONTEXT_LENGTH=64000 ollama serve</code></li>
+            </ul>
+        </div>
+        <div class="comparison-item">
+            <div class="comparison-header">Cloud Agent ✓ Use When…</div>
+            <ul>
+                <li>Long-context synthesis (&gt;64K tokens)</li>
+                <li>Multi-hop reasoning chains (complex logic)</li>
+                <li>Code edits beyond ~200 LOC</li>
+                <li>Ambiguous planning needing world knowledge</li>
+                <li>High-stakes decisions (medical, legal, financial, irreversible)</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ===== SECTION 9: FINE-TUNING ===== -->
+    <div class="section-title">6.0 / 6.1 — Fine-Tuning Gemma 4 (LoRA, QLoRA, PEFT)</div>
+
+    <div class="grid-2">
+        <div class="table-card">
+            <div class="table-card-header">Methods</div>
+            <table>
+                <thead><tr><th>Method</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>SFT</strong></td><td>Supervised Fine-Tuning: instruction→response pairs</td></tr>
+                    <tr><td><strong>RLHF</strong></td><td>Reinforcement Learning from Human Feedback</td></tr>
+                    <tr><td><strong>PEFT</strong></td><td>Update only a small subset of parameters</td></tr>
+                    <tr><td><strong>LoRA</strong></td><td>Train small adapter matrices A,B (10,000× fewer params)</td></tr>
+                    <tr><td><strong>QLoRA</strong></td><td>4-bit quantized base + LoRA adapters in higher precision</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="card">
+            <div class="card-title">When to Fine-Tune</div>
+            <div class="card-content">
+                <ul>
+                    <li><strong>Cost:</strong> Smaller fine-tuned model can match a larger base model</li>
+                    <li><strong>Latency:</strong> Smaller model = faster responses</li>
+                    <li><strong>Consistency:</strong> Model reliably follows specific format/style</li>
+                </ul>
+                <p style="margin-top:5pt; font-style:italic; font-size:8.5pt;">Start with prompting. Fine-tune only when product shape is finalized and use case is clear.</p>
+                <p style="margin-top:6pt; font-weight:700; font-size:9pt;">Hardware (QLoRA min.):</p>
+                <ul>
+                    <li>GPU: 24GB VRAM (RTX 3090/4090)</li>
+                    <li>Course demo: <code>unsloth/gemma-4-E2B-it</code> QLoRA fits ~8GB VRAM</li>
+                    <li>RAM: 32GB+ system memory</li>
+                    <li>Storage: 100GB+ SSD free</li>
+                </ul>
+                <p style="margin-top:6pt; font-weight:700; font-size:9pt;">Tools:</p>
+                <p style="font-size:8.5pt;">Unsloth · TRL (SFTTrainer) · Axolotl · LLaMA-Factory · AutoTrain · Together AI</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== SECTION 10: QUANTIZATION ===== -->
+    <div class="section-title">6.2 — Quantization</div>
+
+    <div class="table-card mb-medium">
+        <div class="table-card-header">Precision Levels</div>
+        <table>
+            <thead><tr><th>Precision</th><th>Relative Size</th><th>Primary Use</th><th>Notes</th></tr></thead>
+            <tbody>
+                <tr><td>FP32</td><td>Baseline (1×)</td><td>Training</td><td>Full precision, maximum memory</td></tr>
+                <tr><td>FP16 / BF16</td><td>2× smaller</td><td>Fine-tuning</td><td>Default for most training pipelines</td></tr>
+                <tr><td>INT8</td><td>4× smaller</td><td>Inference</td><td>Minimal quality loss</td></tr>
+                <tr class="highlight-row"><td>INT4 (GGUF/AWQ)</td><td>8× smaller</td><td>Consumer GPU / CPU</td><td>2× smaller than INT8; QLoRA uses NF4</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="info-box">
+        <div class="info-box-title">Q4 Key Insight</div>
+        <p>INT4 (Q4) cuts weight memory <strong>8× vs FP32</strong> (4× vs FP16): a 7B model drops from ~26 GB (FP32) to ~3.3 GB.<br>
+        MoE caveat: Gemma 4 26B activates only 3.8B params per token (fast), but all weights still load — <strong>~18 GB VRAM at Q4</strong> (19 GB download).</p>
+    </div>
+
+    <!-- ===== SECTION 11: BEST MODELS 2026 ===== -->
+    <div class="section-title">8.0 — Best Local Models 2026</div>
+
+    <div class="table-card mb-medium">
+        <div class="table-card-header">Hardware Tiers — Recommended Models</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tier</th>
+                    <th>Hardware</th>
+                    <th>Top Pick</th>
+                    <th>Ollama Tag</th>
+                    <th>Strength</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>1</strong></td>
+                    <td>CPU, 8–16GB RAM</td>
+                    <td>Qwen3 4B ★</td>
+                    <td><code>qwen3:4b</code></td>
+                    <td>General, multilingual, 2.5GB</td>
+                </tr>
+                <tr class="highlight-row">
+                    <td><strong>1</strong></td>
+                    <td>CPU, 8–16GB RAM</td>
+                    <td>Gemma 4 E4B ★ (default)</td>
+                    <td><code>gemma4</code></td>
+                    <td>= <code>gemma4:e4b</code>, 9.6GB; image (audio via HF only)</td>
+                </tr>
+                <tr>
+                    <td><strong>1</strong></td>
+                    <td>CPU, reasoning</td>
+                    <td>Phi-4 Mini</td>
+                    <td><code>phi4-mini</code></td>
+                    <td>Reasoning/math at 3.8B (MIT)</td>
+                </tr>
+                <tr>
+                    <td><strong>2</strong></td>
+                    <td>16GB laptop / unified</td>
+                    <td>Gemma 4 12B ★</td>
+                    <td><code>gemma4:12b</code></td>
+                    <td>Image; audio via HF Transformers, not Ollama</td>
+                </tr>
+                <tr>
+                    <td><strong>2</strong></td>
+                    <td>10–16GB VRAM</td>
+                    <td>Phi-4 14B ★</td>
+                    <td><code>phi4</code></td>
+                    <td>Reasoning, STEM, 9.1GB (MIT)</td>
+                </tr>
+                <tr>
+                    <td><strong>2</strong></td>
+                    <td>8GB VRAM</td>
+                    <td>Qwen3 8B</td>
+                    <td><code>qwen3:8b</code></td>
+                    <td>Coding, multilingual, thinking mode</td>
+                </tr>
+                <tr>
+                    <td><strong>3</strong></td>
+                    <td>24GB VRAM</td>
+                    <td>Qwen 3.8 27B ★</td>
+                    <td><code>qwen3.8:27b</code></td>
+                    <td>Coding + agents, 18GB, Aug 2026</td>
+                </tr>
+                <tr>
+                    <td><strong>3</strong></td>
+                    <td>~18GB VRAM</td>
+                    <td>Gemma 4 26B</td>
+                    <td><code>gemma4:26b</code></td>
+                    <td>MoE, 3.8B active, 19GB; no audio</td>
+                </tr>
+                <tr>
+                    <td><strong>3</strong></td>
+                    <td>24GB VRAM</td>
+                    <td>Gemma 4 31B</td>
+                    <td><code>gemma4:31b</code></td>
+                    <td>Flagship Gemma 4, 20GB</td>
+                </tr>
+                <tr>
+                    <td><strong>3</strong></td>
+                    <td>20GB VRAM</td>
+                    <td>DeepSeek-R1 32B</td>
+                    <td><code>deepseek-r1:32b</code></td>
+                    <td>Math + chain-of-thought (MIT)</td>
+                </tr>
+                <tr>
+                    <td><strong>4</strong></td>
+                    <td>48GB+ VRAM</td>
+                    <td>DeepSeek-R1 70B</td>
+                    <td><code>deepseek-r1:70b</code></td>
+                    <td>43GB; MIT; single A100 80GB</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="grid-2">
+        <div class="code-card">
+            <div class="code-card-header">Tier 1 — Quick Start Commands (CPU)</div>
+            <pre><code>ollama pull gemma4      # default
+ollama pull qwen3:4b    # general
+ollama pull phi4-mini   # reasoning
+ollama pull gemma4:e2b  # ≤8GB RAM</code></pre>
+        </div>
+        <div class="code-card">
+            <div class="code-card-header">Tier 2–3 — GPU Commands</div>
+            <pre><code>ollama pull gemma4:12b  # 16GB RAM
+ollama pull gemma4:26b  # 24GB GPU
+ollama pull qwen3:8b    # 8GB VRAM
+ollama pull qwen3.8:27b # agents
+ollama pull deepseek-r1:32b
+# production serving (vLLM):
+vllm serve google/gemma-4-E4B-it</code></pre>
+        </div>
+    </div>
+
+    <!-- ===== KEY TAKEAWAYS ===== -->
+    <div class="key-points">
+        <div class="key-points-title">Course Key Takeaways</div>
+        <ul>
+            <li><strong>Ollama</strong> — One command to run any open-weight model locally (<code>ollama pull</code> + <code>ollama.chat()</code>)</li>
+            <li><strong>RAG</strong> — Load → Chunk → Embed → Index → Retrieve → Generate: give LLMs access to your own documents</li>
+            <li><strong>Tool Calling</strong> — Pass <code>tools=[...]</code> to Ollama; LLM decides which function to call and with what args</li>
+            <li><strong>Agents</strong> — Structured outputs (Pydantic) + tool calling + a loop = a capable local agent</li>
+            <li><strong>ReAct</strong> — Reason → Act → Observe loop; keep looping until no <code>tool_calls</code> in response</li>
+            <li><strong>Local vs Cloud</strong> — Local wins on privacy, cost and bounded tasks; cloud wins on long context (&gt;64K), multi-hop reasoning and high-stakes decisions</li>
+            <li><strong>Fine-Tuning</strong> — Use QLoRA (4-bit base + LoRA adapters) with Unsloth or TRL on consumer hardware (course: <code>unsloth/gemma-4-E2B-it</code>); only fine-tune when task is well-defined</li>
+            <li><strong>Quantization</strong> — INT4 (Q4) weights are 8× smaller than FP32 (4× vs FP16) at minimal quality cost</li>
+            <li><strong>Gemma 4</strong> — Course default <code>gemma4</code> (E4B, CPU-friendly); <code>gemma4:12b</code> for 16 GB laptops, 26B/31B for 24 GB GPUs; image input on all sizes, Apache 2.0</li>
+        </ul>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 Automata Learning Lab | OReilly Live Training: "Getting Started with Llama and Other Local Models" | Course by Lucas Soares</p>
+    </footer>
+
+</body>
+</html>
