@@ -13,3 +13,8 @@ notebooks/storage/*
 lora_summary.txt
 recent_models.md
 lora_evolution.md
+
+# Course process artifacts (not student-facing content)
+Plans/
+research/
+walkthrough.md
