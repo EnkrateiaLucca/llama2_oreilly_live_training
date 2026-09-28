@@ -380,13 +380,16 @@
 
     --
 
-    3. Score each output on 3 axes: **Completion** (0 = no, 1 = partial, 2 = yes) · **Tool-use correctness** (right tool, right args?) · **Hallucination** (grounded, or invented facts?)
+    3. Score each output on 3 axes:
+       - **Completion** — task done? (0 = no, 1 = partial, 2 = yes)
+       - **Tool-use correctness** — right tool, right args?
+       - **Hallucination** — grounded, or invented facts?
 
     --
 
     4. **Decide**: local vs. frontier
        - Local wins → use it; set up routing rule
-       - Local fails → identify which axis and route those cases to a stronger model
+       - Local fails → find the weak axis; route those cases to a stronger model
 
     --
 
