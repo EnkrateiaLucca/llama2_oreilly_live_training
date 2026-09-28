@@ -68,6 +68,11 @@ def setup_models(model_name: str, temperature: float) -> None:
     )
 
 
+# Configure models at startup: documents are indexed before the first query,
+# and without this LlamaIndex falls back to its default OpenAI embeddings.
+setup_models("gemma4", 0.1)
+
+
 def get_file_hash(content: bytes) -> str:
     """Generate hash for cache invalidation."""
     return hashlib.md5(content).hexdigest()
@@ -134,7 +139,7 @@ async def upload_document(file: UploadFile = File(...)):
 @app.post("/api/use-sample")
 async def use_sample_document():
     """Use the sample Attention paper document."""
-    default_path = Path(__file__).parent / "assets-resources" / "attention_paper.pdf"
+    default_path = Path(__file__).parent / "assets-resources" / "pdf-test" / "attention_paper.pdf"
 
     if not default_path.exists():
         raise HTTPException(status_code=404, detail="Sample document not found")

@@ -11,26 +11,28 @@ response = ollama.chat(
     ],
     tools=[{
         'type': 'function',
-        'name': 'send_email',
-        'description': 'Send an email to a user, the input params are to,\
-            subject and body.',
-        'parameters': {
-            'type': 'object',
-            'properties': {
-                'to': {
-                    'type': 'string',
-                    'description': 'The email address of the receiver',
+        'function': {
+            'name': 'send_email',
+            'description': 'Send an email to a user, the input params are to,\
+                subject and body.',
+            'parameters': {
+                'type': 'object',
+                'properties': {
+                    'to': {
+                        'type': 'string',
+                        'description': 'The email address of the receiver',
+                    },
+                    'subject': {
+                        'type': 'string',
+                        'description': 'The subject of the email',
+                    },
+                    'body': {
+                        'type': 'string',
+                        'description': 'The body of the email',
+                    }
                 },
-                'subject': {
-                    'type': 'string',
-                    'description': 'The subject of the email',
-                },
-                'body': {
-                    'type': 'string',
-                    'description': 'The body of the email',
-                }
-            },
-            'required': ['to', 'subject', 'body']
+                'required': ['to', 'subject', 'body']
+            }
         }
     }]
 )

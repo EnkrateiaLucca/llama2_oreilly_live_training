@@ -130,7 +130,7 @@ def chat_with_rag(
 
     # Check for default document if no files uploaded
     if not all_files:
-        default_path = Path(__file__).parent / "assets-resources" / "attention_paper.pdf"
+        default_path = Path(__file__).parent / "assets-resources" / "pdf-test" / "attention_paper.pdf"
         if default_path.exists():
             all_files.append(str(default_path))
             yield "Using sample document (Attention paper)...\n\n"
@@ -172,7 +172,6 @@ def create_demo() -> gr.Blocks:
 
     with gr.Blocks(
         title="Local RAG Chat",
-        theme=gr.themes.Soft(),
     ) as demo:
         gr.Markdown(
             """
@@ -232,7 +231,6 @@ def create_demo() -> gr.Blocks:
                 chatbot = gr.Chatbot(
                     height=500,
                     placeholder="Upload a PDF and ask questions about it...",
-                    type="messages",
                 )
 
                 chat_interface = gr.ChatInterface(
@@ -251,9 +249,6 @@ def create_demo() -> gr.Blocks:
                         show_sources_checkbox,
                     ],
                     submit_btn="Send",
-                    retry_btn="🔄 Retry",
-                    undo_btn="↩️ Undo",
-                    clear_btn="🗑️ Clear",
                 )
 
     return demo
@@ -261,4 +256,4 @@ def create_demo() -> gr.Blocks:
 
 if __name__ == "__main__":
     demo = create_demo()
-    demo.launch()
+    demo.launch(theme=gr.themes.Soft())  # Gradio 6: theme is a launch() option

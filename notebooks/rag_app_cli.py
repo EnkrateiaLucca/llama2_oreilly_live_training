@@ -28,7 +28,7 @@ print("LLM and Embedding model configured!")
 
 # 1. **Load** - Read the PDF document
 
-def load_pdf(pdf_path: str="./assets-resources/attention_paper.pdf"):
+def load_pdf(pdf_path: str="./assets-resources/pdf-test/attention_paper.pdf"):
     """Load the PDF document"""
     # Load the PDF - using the attention paper as our example
     documents = SimpleDirectoryReader(

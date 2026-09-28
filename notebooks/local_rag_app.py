@@ -155,7 +155,7 @@ def main():
         st.sidebar.success(f"Loaded {len(documents)} pages")
 
     elif use_default:
-        default_path = Path(__file__).parent / "assets-resources" / "attention_paper.pdf"
+        default_path = Path(__file__).parent / "assets-resources" / "pdf-test" / "attention_paper.pdf"
         if default_path.exists():
             with open(default_path, "rb") as f:
                 doc_hash = get_document_hash(f.read())
