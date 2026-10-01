@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Translate Tool Flow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Nunito:wght@800;900&display=swap">
+<style>
+:root {
+  --bg: #F5F3EB; --card: #FFFFFF; --ink: #000000; --text: #2A2825; --muted: #5C5750;
+  --line: #DDD9D2; --soft: #F5F4F1;
+  --coral: #E86B5A; --golden: #F5C542; --sage: #7CB56B; --sky: #5B9BD5;
+  --coral-l: #FBEAE7; --golden-l: #FEF8E6; --sage-l: #EEF5EC; --sky-l: #E8F1F9;
+  --term: #1A1917; --term-text: #F5F3EB;
+  --display: "Nunito", "Arial Rounded MT Bold", system-ui, sans-serif;
+  --sans: "IBM Plex Sans", Arial, sans-serif;
+  --mono: "JetBrains Mono", "Courier New", monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #171614; --card: #22201D; --ink: #F5F3EB; --text: #E6E2D8; --muted: #A8A195;
+    --line: #3A3733; --soft: #2A2825;
+    --coral-l: #3A2522; --golden-l: #3A321A; --sage-l: #22301F; --sky-l: #1E2A36;
+    --term: #0E0D0C;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #171614; --card: #22201D; --ink: #F5F3EB; --text: #E6E2D8; --muted: #A8A195;
+  --line: #3A3733; --soft: #2A2825;
+  --coral-l: #3A2522; --golden-l: #3A321A; --sage-l: #22301F; --sky-l: #1E2A36;
+  --term: #0E0D0C;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 var(--sans); padding-inline: 16px; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-block: 40px 64px; display: grid; gap: 48px; }
+h1, h2, h3 { color: var(--ink); margin: 0; text-wrap: balance; }
+h1 { font: 900 clamp(2rem, 5vw, 3.2rem)/1.05 var(--display); }
+h2 { font: 800 clamp(1.4rem, 3vw, 1.9rem)/1.2 var(--display); }
+h3 { font: 600 1rem/1.4 var(--sans); }
+p { margin: 0; max-width: 70ch; }
+code { font-family: var(--mono); font-size: 0.86em; }
+.eyebrow { font: 600 0.75rem/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+header { display: grid; gap: 14px; }
+header p { color: var(--muted); }
+
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 0.85rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { width: 14px; height: 14px; border: 2px solid var(--ink); display: inline-block; }
+
+.layout { display: grid; grid-template-columns: minmax(280px, 380px) 1fr; gap: 32px; align-items: start; }
+
+/* Flowchart */
+.flow { display: grid; gap: 0; }
+.row { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 10px; }
+.node {
+  all: unset; box-sizing: border-box; cursor: pointer; width: 100%;
+  border: 2px solid var(--ink); background: var(--card); padding: 10px 14px;
+  display: grid; gap: 2px; transition: transform .12s ease, box-shadow .12s ease;
+}
+.node:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); }
+.node:focus-visible { outline: 3px solid var(--sky); outline-offset: 3px; }
+.node[aria-pressed="true"] { box-shadow: 6px 6px 0 var(--ink); transform: translate(-3px, -3px); }
+.node .n { font: 600 0.7rem/1 var(--mono); color: var(--muted); }
+.node .t { font-weight: 600; color: var(--ink); line-height: 1.3; }
+.node .c { font: 400 0.75rem/1.3 var(--mono); color: var(--muted); }
+.node.setup { background: var(--soft); }
+.node.decision { background: var(--golden-l); border-style: dashed; }
+.node.io { background: var(--sky-l); }
+.node.model { background: var(--sage-l); }
+.node.end { background: var(--ink); }
+.node.end .t, .node.end .n, .node.end .c { color: var(--bg); }
+.exit {
+  font: 600 0.72rem/1.2 var(--mono); color: var(--ink); background: var(--coral-l);
+  border: 2px solid var(--coral); padding: 4px 8px; white-space: nowrap; position: relative;
+}
+.exit::before { content: ""; position: absolute; right: 100%; top: 50%; width: 10px; border-top: 2px solid var(--coral); }
+.exit.ok { background: var(--soft); border-color: var(--muted); }
+.exit.ok::before { border-color: var(--muted); }
+.arrow { height: 22px; width: 2px; background: var(--ink); margin-left: 28px; position: relative; }
+.arrow::after { content: ""; position: absolute; bottom: -1px; left: -5px; border: 6px solid transparent; border-top-color: var(--ink); border-bottom: 0; }
+.arrow-label { position: absolute; left: 10px; top: 2px; font: 600 0.68rem/1 var(--mono); color: var(--muted); white-space: nowrap; }
+
+/* Detail panel */
+.panel { position: sticky; top: 16px; display: grid; gap: 18px; background: var(--card); border: 2px solid var(--ink); padding: 24px; min-width: 0; }
+.panel .what { color: var(--text); }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; min-width: 0; }
+.code { min-width: 0; display: grid; gap: 6px; }
+.code .lang { font: 600 0.7rem/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+pre {
+  margin: 0; background: var(--term); color: var(--term-text); padding: 14px; overflow-x: auto;
+  font: 400 0.8rem/1.55 var(--mono); border-left: 4px solid var(--muted); tab-size: 4;
+}
+.code.bash pre { border-left-color: var(--golden); }
+.code.py pre { border-left-color: var(--sky); }
+.notes { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.notes li { background: var(--coral-l); border-left: 4px solid var(--coral); padding: 10px 12px; font-size: 0.92rem; }
+.notes li.tip { background: var(--sage-l); border-left-color: var(--sage); }
+.notes b { color: var(--ink); }
+.nav { display: flex; justify-content: space-between; gap: 10px; }
+.btn {
+  font: 600 0.85rem/1 var(--sans); color: var(--ink); background: var(--card); border: 2px solid var(--ink);
+  padding: 9px 14px; cursor: pointer;
+}
+.btn:hover { background: var(--soft); }
+.btn:disabled { opacity: .35; cursor: default; }
+
+/* Concept map */
+.map { display: grid; gap: 16px; }
+table { border-collapse: collapse; width: 100%; background: var(--card); border: 2px solid var(--ink); font-size: 0.9rem; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font: 600 0.72rem/1.2 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); background: var(--soft); }
+td code { white-space: nowrap; }
+.table-wrap { overflow-x: auto; }
+
+/* Full script */
+.full { display: grid; gap: 16px; }
+.full-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; }
+.full pre { font-size: 0.82rem; border-left-color: var(--sky); }
+
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; }
+  .panel { position: static; padding: 18px; }
+  .pair { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) { .node { transition: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Bash → Python · translate-tool</div>
+  <h1>How the <code>translate</code> script works</h1>
+  <p>The script sends a text file to TranslateGemma running in Ollama and saves the translation next to the original. Click any step to see the Bash code and its Python equivalent side by side.</p>
+  <div class="legend">
+    <span><i style="background:var(--soft)"></i>setup</span>
+    <span><i style="background:var(--golden-l);border-style:dashed"></i>decision</span>
+    <span><i style="background:var(--sky-l)"></i>file I/O</span>
+    <span><i style="background:var(--sage-l)"></i>local model call</span>
+    <span><i style="background:var(--coral-l);border-color:var(--coral)"></i>early exit</span>
+  </div>
+</header>
+
+<section class="layout">
+  <div class="flow" id="flow" aria-label="Script flowchart"></div>
+  <article class="panel" id="panel" aria-live="polite"></article>
+</section>
+
+<section class="map">
+  <div>
+    <div class="eyebrow">Cheat sheet</div>
+    <h2>Bash idiom → Python idiom</h2>
+  </div>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Bash</th><th>Python</th><th>Why it matters</th></tr></thead>
+    <tbody>
+      <tr><td><code>set -euo pipefail</code></td><td>default behavior + <code>check=True</code></td><td>Python stops on errors by default. Subprocess calls need <code>check=True</code> to raise.</td></tr>
+      <tr><td><code>while/case/shift</code></td><td><code>argparse</code></td><td>argparse generates <code>--help</code>, validates choices, and reports missing args.</td></tr>
+      <tr><td><code>[[ -f "$f" ]]</code></td><td><code>Path(f).is_file()</code></td><td>Same check. <code>pathlib</code> keeps paths as objects.</td></tr>
+      <tr><td><code>dirname</code> / <code>basename</code> / <code>${x%.*}</code></td><td><code>.parent</code> / <code>.name</code> / <code>.stem</code> / <code>.suffix</code></td><td>Parameter expansion becomes readable attributes.</td></tr>
+      <tr><td><code>$(cat "$f")</code></td><td><code>Path(f).read_text()</code></td><td>Reads the whole file into a string.</td></tr>
+      <tr><td><code>"...${VAR}..."</code></td><td><code>f"...{var}..."</code></td><td>String interpolation.</td></tr>
+      <tr><td><code>cmd &gt; file</code></td><td><code>subprocess.run(cmd, stdout=f)</code></td><td>Redirects the model's stdout into the output file.</td></tr>
+      <tr><td><code>echo "..." ; exit 1</code></td><td><code>sys.exit("...")</code></td><td>Prints to stderr and exits with code 1.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section class="full">
+  <div class="full-head">
+    <div>
+      <div class="eyebrow">Reference solution</div>
+      <h2>The complete Python script</h2>
+    </div>
+    <button class="btn" id="copy">Copy script</button>
+  </div>
+  <p>Run it with <code>uv run translate.py notes.txt</code> or <code>uv run translate.py notes.txt --to pt -o out.txt</code>. It uses only the standard library.</p>
+  <pre id="full"></pre>
+</section>
+
+</div>
+
+<script>
+const STEPS = [
+  {
+    kind: "setup", title: "Strict mode + defaults", cue: "MODEL, SOURCE_LANG, TARGET_LANG",
+    what: "Turn on fail-fast mode and set the default model and translation direction (Portuguese → English).",
+    bash: `set -euo pipefail
+
+MODEL="translategemma:12b"
+SOURCE_LANG="Portuguese (pt)"
+TARGET_LANG="English (en)"
+OUTPUT_PATH=""`,
+    py: `import argparse
+import subprocess
+import sys
+from pathlib import Path
+
+MODEL = "translategemma:12b"
+PT, EN = "Portuguese (pt)", "English (en)"`,
+    notes: [
+      ["tip", "<b>set -e</b> has no Python equivalent because Python already stops on an unhandled exception."],
+    ],
+  },
+  {
+    kind: "process", title: "Parse arguments", cue: "--to · -o · -h · <file>",
+    what: "Loop over the arguments. <code>--to pt</code> flips the direction, <code>-o</code> sets the output path, <code>-h</code> prints help, and anything else becomes the input file.",
+    exit: ["-h → print help, exit 0", "ok"],
+    bash: `while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --to)
+            if [[ "$2" == "pt" || "$2" == "portuguese" ]]; then
+                SOURCE_LANG="English (en)"
+                TARGET_LANG="Portuguese (pt)"
+            fi
+            shift 2 ;;
+        -o|--output) OUTPUT_PATH="$2"; shift 2 ;;
+        -h|--help)   echo "Usage: ..."; exit 0 ;;
+        *)           INPUT_FILE="$1"; shift ;;
+    esac
+done`,
+    py: `parser = argparse.ArgumentParser(
+    description="Translate a file from Portuguese to English using a local AI model.")
+parser.add_argument("input_file", type=Path)
+parser.add_argument("--to", choices=["en", "pt", "portuguese"], default="en",
+                    help="pt reverses direction (English to Portuguese)")
+parser.add_argument("-o", "--output", type=Path, help="Custom output file path")
+args = parser.parse_args()
+
+source, target = (EN, PT) if args.to in ("pt", "portuguese") else (PT, EN)`,
+    notes: [
+      ["warn", "<b>Bash quirk:</b> <code>translate f.txt --to</code> crashes with <i>unbound variable</i> because of <code>set -u</code>. <code>--to es</code> is silently ignored. argparse rejects both with a clear message."],
+      ["tip", "argparse writes the <code>-h</code> help text for you. Delete the hand-written <code>echo</code> block."],
+    ],
+  },
+  {
+    kind: "decision", title: "Input file given?", cue: '[[ -z "$INPUT_FILE" ]]',
+    what: "Stop with an error when no input file was passed.",
+    exit: ["no → error, exit 1"],
+    bash: `if [[ -z "$INPUT_FILE" ]]; then
+    echo "Error: No input file specified."
+    echo "Usage: translate <input_file>"
+    exit 1
+fi`,
+    py: `# Nothing to write.
+# input_file is a required positional argument,
+# so argparse prints usage and exits (code 2).`,
+    notes: [["tip", "This whole block disappears in Python. argparse handles it."]],
+  },
+  {
+    kind: "decision", title: "File exists?", cue: '[[ ! -f "$INPUT_FILE" ]]',
+    what: "Stop with an error when the path does not point to a regular file.",
+    exit: ["no → error, exit 1"],
+    bash: `if [[ ! -f "$INPUT_FILE" ]]; then
+    echo "Error: File not found: $INPUT_FILE"
+    exit 1
+fi`,
+    py: `if not args.input_file.is_file():
+    sys.exit(f"Error: File not found: {args.input_file}")`,
+    notes: [["tip", "<code>sys.exit(\"msg\")</code> prints the message to stderr and exits with code 1 in one line."]],
+  },
+  {
+    kind: "decision", title: "Output path given?", cue: "else → <name>_english.<ext>",
+    what: "Without <code>-o</code>, build the output name next to the input: <code>notes.txt</code> → <code>notes_english.txt</code> (or <code>_portuguese</code> when reversed).",
+    bash: `if [[ -z "$OUTPUT_PATH" ]]; then
+    DIR=$(dirname "$INPUT_FILE")
+    BASENAME=$(basename "$INPUT_FILE")
+    EXT="\${BASENAME##*.}"
+    NAME="\${BASENAME%.*}"
+    if [[ "$TARGET_LANG" == *"English"* ]]; then
+        OUTPUT_PATH="\${DIR}/\${NAME}_english.\${EXT}"
+    else
+        OUTPUT_PATH="\${DIR}/\${NAME}_portuguese.\${EXT}"
+    fi
+fi`,
+    py: `suffix = "_english" if target == EN else "_portuguese"
+src = args.input_file
+output = args.output or src.with_name(f"{src.stem}{suffix}{src.suffix}")`,
+    notes: [
+      ["warn", "<b>Bash quirk:</b> a file with no extension (<code>README</code>) produces <code>README_english.README</code>. <code>Path.stem</code> + <code>Path.suffix</code> give <code>README_english</code>."],
+    ],
+  },
+  {
+    kind: "io", title: "Read the input file", cue: 'CONTENT=$(cat "$INPUT_FILE")',
+    what: "Load the whole file into memory as one string.",
+    bash: `CONTENT=$(cat "$INPUT_FILE")`,
+    py: `content = src.read_text()`,
+    notes: [],
+  },
+  {
+    kind: "process", title: "Print a summary", cue: "echo Translating / Direction / Output / Model",
+    what: "Tell the user what is about to happen.",
+    bash: `echo "Translating: $INPUT_FILE"
+echo "Direction:   $SOURCE_LANG → $TARGET_LANG"
+echo "Output:      $OUTPUT_PATH"
+echo "Model:       $MODEL"
+echo ""`,
+    py: `print(f"Translating: {src}")
+print(f"Direction:   {source} → {target}")
+print(f"Output:      {output}")
+print(f"Model:       {MODEL}\\n")`,
+    notes: [],
+  },
+  {
+    kind: "process", title: "Build the prompt", cue: 'PROMPT="You are a professional…"',
+    what: "Wrap the file content in TranslateGemma's instruction template. The language names come from the direction chosen in step 2.",
+    bash: `PROMPT="You are a professional \${SOURCE_LANG} to \${TARGET_LANG} translator. \\
+Your goal is to accurately convey the meaning of the \${SOURCE_LANG} text \\
+in \${TARGET_LANG}, while respecting the grammar, style, and cultural \\
+nuances of the \${TARGET_LANG}. Please translate the following text. \\
+Output only the translation, nothing else.
+
+\${CONTENT}"`,
+    py: `prompt = (
+    f"You are a professional {source} to {target} translator. Your goal is to accurately convey "
+    f"the meaning of the {source} text in {target}, while respecting the grammar, style, and "
+    f"cultural nuances of the {target}. Please translate the following text. "
+    f"Output only the translation, nothing else.\\n\\n{content}"
+)`,
+    notes: [["tip", "Adjacent f-strings inside parentheses join into one string. Students can keep the prompt readable without a giant single line."]],
+  },
+  {
+    kind: "model", title: "Run TranslateGemma in Ollama", cue: "ollama run … > $OUTPUT_PATH",
+    what: "Call the local model through the Ollama CLI and stream its answer straight into the output file.",
+    bash: `ollama run "$MODEL" "$PROMPT" --nowordwrap > "$OUTPUT_PATH"`,
+    py: `with output.open("w") as f:
+    subprocess.run(["ollama", "run", MODEL, prompt, "--nowordwrap"],
+                   stdout=f, check=True)`,
+    notes: [
+      ["tip", "Pass the command as a <b>list</b>. Python then sends the prompt as one argument with no shell quoting problems."],
+      ["tip", "<b>Alternative:</b> the <code>ollama</code> Python package skips the CLI: <code>ollama.generate(model=MODEL, prompt=prompt)[\"response\"]</code>. It adds one dependency."],
+      ["warn", "Both versions open the output file before the model runs, so a failed call leaves an empty file behind."],
+    ],
+  },
+  {
+    kind: "end", title: "Done", cue: "Translation saved",
+    what: "Confirm where the translation landed.",
+    bash: `echo ""
+echo "Done! Translation saved to: $OUTPUT_PATH"`,
+    py: `print(f"\\nDone! Translation saved to: {output}")`,
+    notes: [],
+  },
+];
+
+const FULL = `# /// script
+# requires-python = ">=3.10"
+# ///
+"""translate - Translate a file between Portuguese and English with TranslateGemma (local Ollama)."""
+import argparse
+import subprocess
+import sys
+from pathlib import Path
+
+MODEL = "translategemma:12b"
+PT, EN = "Portuguese (pt)", "English (en)"
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Translate a file from Portuguese to English using a local AI model.")
+    parser.add_argument("input_file", type=Path)
+    parser.add_argument("--to", choices=["en", "pt", "portuguese"], default="en", help="pt reverses direction (English to Portuguese)")
+    parser.add_argument("-o", "--output", type=Path, help="Custom output file path")
+    args = parser.parse_args()
+
+    if not args.input_file.is_file():
+        sys.exit(f"Error: File not found: {args.input_file}")
+
+    source, target = (EN, PT) if args.to in ("pt", "portuguese") else (PT, EN)
+    suffix = "_english" if target == EN else "_portuguese"
+    src = args.input_file
+    output = args.output or src.with_name(f"{src.stem}{suffix}{src.suffix}")
+
+    content = src.read_text()
+
+    print(f"Translating: {src}")
+    print(f"Direction:   {source} → {target}")
+    print(f"Output:      {output}")
+    print(f"Model:       {MODEL}\\n")
+
+    prompt = (
+        f"You are a professional {source} to {target} translator. Your goal is to accurately convey "
+        f"the meaning of the {source} text in {target}, while respecting the grammar, style, and "
+        f"cultural nuances of the {target}. Please translate the following text. "
+        f"Output only the translation, nothing else.\\n\\n{content}"
+    )
+
+    with output.open("w") as f:
+        subprocess.run(["ollama", "run", MODEL, prompt, "--nowordwrap"], stdout=f, check=True)
+
+    print(f"\\nDone! Translation saved to: {output}")
+
+
+if __name__ == "__main__":
+    main()
+`;
+
+const flow = document.getElementById("flow");
+const panel = document.getElementById("panel");
+let current = 0;
+
+const esc = s => s.replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+
+STEPS.forEach((s, i) => {
+  if (i > 0) {
+    const a = document.createElement("div");
+    a.className = "arrow";
+    if (STEPS[i - 1].kind === "decision" && STEPS[i - 1].exit) a.innerHTML = `<span class="arrow-label">yes</span>`;
+    flow.appendChild(a);
+  }
+  const row = document.createElement("div");
+  row.className = "row";
+  row.innerHTML = `
+    <button class="node ${s.kind}" data-i="${i}" aria-pressed="false">
+      <span class="n">STEP ${i + 1}</span>
+      <span class="t">${s.title}</span>
+      <span class="c">${esc(s.cue)}</span>
+    </button>
+    ${s.exit ? `<span class="exit ${s.exit[1] || ""}">${s.exit[0]}</span>` : ""}`;
+  flow.appendChild(row);
+});
+
+function show(i) {
+  current = i;
+  const s = STEPS[i];
+  flow.querySelectorAll(".node").forEach(n => n.setAttribute("aria-pressed", n.dataset.i == i));
+  panel.innerHTML = `
+    <div class="eyebrow">Step ${i + 1} of ${STEPS.length} · ${s.kind}</div>
+    <h2>${s.title}</h2>
+    <p class="what">${s.what}</p>
+    <div class="pair">
+      <div class="code bash"><span class="lang">Bash</span><pre>${esc(s.bash)}</pre></div>
+      <div class="code py"><span class="lang">Python</span><pre>${esc(s.py)}</pre></div>
+    </div>
+    ${s.notes.length ? `<ul class="notes">${s.notes.map(([k, t]) => `<li class="${k}">${t}</li>`).join("")}</ul>` : ""}
+    <div class="nav">
+      <button class="btn" data-go="-1" ${i === 0 ? "disabled" : ""}>← Previous</button>
+      <button class="btn" data-go="1" ${i === STEPS.length - 1 ? "disabled" : ""}>Next →</button>
+    </div>`;
+}
+
+flow.addEventListener("click", e => {
+  const n = e.target.closest(".node");
+  if (n) show(+n.dataset.i);
+});
+panel.addEventListener("click", e => {
+  const b = e.target.closest("[data-go]");
+  if (b) show(current + +b.dataset.go);
+});
+document.addEventListener("keydown", e => {
+  if (e.key === "ArrowRight" || e.key === "ArrowDown") { if (current < STEPS.length - 1) { e.preventDefault(); show(current + 1); } }
+  if (e.key === "ArrowLeft" || e.key === "ArrowUp") { if (current > 0) { e.preventDefault(); show(current - 1); } }
+});
+
+document.getElementById("full").textContent = FULL;
+document.getElementById("copy").addEventListener("click", async e => {
+  try { await navigator.clipboard.writeText(FULL); e.target.textContent = "Copied ✓"; }
+  catch { e.target.textContent = "Copy failed"; }
+  setTimeout(() => (e.target.textContent = "Copy script"), 1500);
+});
+
+show(0);
+</script>
+</body>
+</html>

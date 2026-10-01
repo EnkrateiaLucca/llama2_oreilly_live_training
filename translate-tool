@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+# translate - Translate a file from Portuguese to English using TranslateGemma (local Ollama model)
+# Usage: translate ./input_file.txt
+#        translate ./input_file.txt --to pt   (English to Portuguese)
+#        translate ./input_file.txt -o output.txt  (custom output path)
+
+set -euo pipefail
+
+MODEL="translategemma:12b"
+SOURCE_LANG="Portuguese (pt)"
+TARGET_LANG="English (en)"
+OUTPUT_PATH=""
+
+# Parse arguments
+INPUT_FILE=""
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --to)
+            if [[ "$2" == "pt" || "$2" == "portuguese" ]]; then
+                SOURCE_LANG="English (en)"
+                TARGET_LANG="Portuguese (pt)"
+            fi
+            shift 2
+            ;;
+        -o|--output)
+            OUTPUT_PATH="$2"
+            shift 2
+            ;;
+        -h|--help)
+            echo "Usage: translate <input_file> [options]"
+            echo ""
+            echo "Translate a file from Portuguese to English using a local AI model."
+            echo ""
+            echo "Options:"
+            echo "  --to pt        Reverse direction (English to Portuguese)"
+            echo "  -o, --output   Custom output file path"
+            echo "  -h, --help     Show this help message"
+            echo ""
+            echo "Output: Creates <filename>_english.<ext> in the same directory."
+            exit 0
+            ;;
+        *)
+            INPUT_FILE="$1"
+            shift
+            ;;
+    esac
+done
+
+if [[ -z "$INPUT_FILE" ]]; then
+    echo "Error: No input file specified."
+    echo "Usage: translate <input_file>"
+    exit 1
+fi
+
+if [[ ! -f "$INPUT_FILE" ]]; then
+    echo "Error: File not found: $INPUT_FILE"
+    exit 1
+fi
+
+# Determine output path
+if [[ -z "$OUTPUT_PATH" ]]; then
+    DIR=$(dirname "$INPUT_FILE")
+    BASENAME=$(basename "$INPUT_FILE")
+    EXT="${BASENAME##*.}"
+    NAME="${BASENAME%.*}"
+    if [[ "$TARGET_LANG" == *"English"* ]]; then
+        OUTPUT_PATH="${DIR}/${NAME}_english.${EXT}"
+    else
+        OUTPUT_PATH="${DIR}/${NAME}_portuguese.${EXT}"
+    fi
+fi
+
+CONTENT=$(cat "$INPUT_FILE")
+
+echo "Translating: $INPUT_FILE"
+echo "Direction:   $SOURCE_LANG → $TARGET_LANG"
+echo "Output:      $OUTPUT_PATH"
+echo "Model:       $MODEL"
+echo ""
+
+PROMPT="You are a professional ${SOURCE_LANG} to ${TARGET_LANG} translator. Your goal is to accurately convey the meaning of the ${SOURCE_LANG} text in ${TARGET_LANG}, while respecting the grammar, style, and cultural nuances of the ${TARGET_LANG}. Please translate the following text. Output only the translation, nothing else.
+
+${CONTENT}"
+
+ollama run "$MODEL" "$PROMPT" --nowordwrap > "$OUTPUT_PATH"
+
+echo ""
+echo "Done! Translation saved to: $OUTPUT_PATH"
