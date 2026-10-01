@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bash Vibe Check</title>
+<style>
+:root{--bg:#fafaf7;--panel:#fff;--ink:#1d1d1b;--muted:#6b6b66;--line:#e4e2dc;--code:#f3f2ee;--good:#1f8a4c;--mid:#b7791f;--bad:#c53030;--accent:#2b59c3}
+@media (prefers-color-scheme:dark){:root{--bg:#141414;--panel:#1c1c1c;--ink:#ecebe6;--muted:#9a9993;--line:#2f2f2f;--code:#242424;--good:#48bb78;--mid:#ecc94b;--bad:#fc8181;--accent:#7f9cf5}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 -apple-system,BlinkMacSystemFont,"Inter",sans-serif}
+main{max-width:1500px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:15px;margin:0 0 10px}
+.sub{color:var(--muted);margin:0 0 18px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:14px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+label{color:var(--muted);font-size:12px}
+input[type=text],input[type=number],textarea{background:var(--code);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:6px 8px;font:13px ui-monospace,Menlo,monospace}
+textarea{width:100%;min-height:60px}
+button{background:var(--accent);color:#fff;border:0;border-radius:6px;padding:7px 12px;font-weight:600;cursor:pointer}
+button.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+button:disabled{opacity:.45;cursor:default}
+.chip{display:inline-flex;gap:5px;align-items:center;border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:12px;cursor:pointer}
+code,.mono{font:12px/1.4 ui-monospace,Menlo,monospace}
+pre{margin:0;white-space:pre-wrap;word-break:break-word;background:var(--code);padding:6px 8px;border-radius:6px;font:12px/1.4 ui-monospace,Menlo,monospace}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:700px}
+th,td{border-bottom:1px solid var(--line);padding:8px;vertical-align:top;text-align:left}
+th{font-size:12px;color:var(--muted);position:sticky;top:0;background:var(--panel)}
+td.item{width:300px;min-width:240px}
+.cat{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.ref{color:var(--muted);margin-top:4px}
+.badge{display:inline-block;font:600 11px ui-monospace,Menlo,monospace;padding:1px 6px;border-radius:4px;color:#fff}
+.s1{background:var(--good)}.s2{background:var(--mid)}.s3{background:var(--bad)}
+.checks{margin:4px 0 0;padding:0;list-style:none;font-size:11px;color:var(--muted)}
+.checks li.f{color:var(--bad)}
+.verdict button{padding:1px 7px;font-size:12px;background:transparent;color:var(--muted);border:1px solid var(--line)}
+.verdict button.on{color:#fff;background:var(--accent);border-color:var(--accent)}
+.meta{font-size:11px;color:var(--muted)}
+.viz{--series-1:#2a78d6;--track:#f0efec}
+@media (prefers-color-scheme:dark){.viz{--series-1:#3987e5;--track:#2a2a28}}
+.bars{display:grid;grid-template-columns:max-content 1fr max-content;gap:8px 12px;align-items:center;margin:8px 0 18px}
+.track{height:14px;background:var(--track);border-radius:0 4px 4px 0}
+.track i{display:block;height:100%;background:var(--series-1);border-radius:0 4px 4px 0;min-width:2px}
+.val{font:600 13px ui-monospace,Menlo,monospace}
+.heat{display:grid;gap:2px;align-items:center;overflow-x:auto}
+.heat .c{height:22px;border-radius:2px;cursor:default;display:grid;place-items:center;font-size:11px}
+.heat .c.err{background:repeating-linear-gradient(45deg,var(--track) 0 3px,var(--muted) 3px 4px)}
+.heat .c:hover{outline:2px solid var(--ink)}
+.heat .h{font:10px ui-monospace,Menlo,monospace;color:var(--muted);text-align:center}
+.legend{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted);margin-top:8px}
+.legend i{width:18px;height:10px;border-radius:2px;display:inline-block}
+#tip{position:fixed;pointer-events:none;z-index:9;max-width:340px;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:12px;box-shadow:0 4px 16px rgba(0,0,0,.15);display:none}
+#status{color:var(--muted);font-size:12px}
+dialog{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:16px;width:min(640px,calc(100vw - 32px))}
+dialog::backdrop{background:rgba(0,0,0,.45)}
+dialog label{display:block;margin:10px 0 4px}
+dialog input[type=text]{width:100%}
+.tag{font-size:10px;border:1px solid var(--accent);color:var(--accent);border-radius:4px;padding:0 4px;margin-left:4px}
+.link{background:none;border:0;padding:0;color:var(--accent);font-size:12px;font-weight:500;cursor:pointer}
+details summary{cursor:pointer;color:var(--muted);font-size:12px}
+.out{display:grid;gap:8px;margin-top:10px}
+</style>
+</head>
+<body>
+<main>
+<h1>Bash Vibe Check</h1>
+<p class="sub">25 curated NL → bash tasks, mined from past Claude Code sessions and ranked by how often each tool showed up. Run them against local Ollama models; regex checks score each answer, and you can override with 👍/👎.</p>
+
+<section class="panel">
+  <div class="row">
+    <label>Ollama <input type="text" id="host" value="http://localhost:11434" size="24"></label>
+    <label>temp <input type="number" id="temp" value="0" step="0.1" min="0" max="2" style="width:60px"></label>
+    <button class="ghost" id="reload">Reload models</button>
+    <span id="status"></span>
+  </div>
+  <div class="row" id="models" style="margin-top:10px"></div>
+  <details style="margin-top:10px"><summary>System prompt</summary>
+    <textarea id="sys">You turn a request into a single bash command for macOS (zsh). Output ONLY the command. No explanation, no markdown, no code fences.</textarea>
+  </details>
+  <div class="row" style="margin-top:12px">
+    <button class="ghost" id="clear">Clear results</button>
+    <button class="ghost" id="dlData">Download dataset</button>
+    <button class="ghost" id="dlRes">Download results</button>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>Playground</h2>
+  <div class="row"><input type="text" id="ask" placeholder="e.g. find all mp4 files bigger than 1GB on my Desktop" style="flex:1;min-width:240px"><button id="send">Send to selected</button></div>
+  <div class="out" id="askOut"></div>
+</section>
+
+<section class="panel">
+  <div class="row" style="justify-content:space-between"><h2 style="margin:0">Scores</h2>
+    <div class="row"><button id="run">Score selected models</button><button class="ghost" id="stop" disabled>Stop</button></div></div>
+  <p class="meta">Runs every checked model against every task in the dataset, replacing its previous scores.</p>
+  <div class="viz" id="board"><span class="meta">No results yet.</span></div>
+  <div id="tip"></div>
+</section>
+
+<section class="panel">
+  <h2>Dataset & results</h2>
+  <div class="tablewrap"><table id="tbl"></table></div>
+</section>
+<dialog id="addDlg">
+  <form method="dialog" id="addForm">
+    <h2>Add to dataset</h2>
+    <label>Prompt</label><input type="text" id="fPrompt" required>
+    <label>Category</label><input type="text" id="fCat" value="custom">
+    <label>Reference command (edit if the model got it slightly wrong)</label><textarea id="fRef" required></textarea>
+    <label>Checks, one per line: <code>label | regex</code> (prefix <code>!</code> to require NO match). Case-insensitive.</label>
+    <textarea id="fChecks" style="min-height:110px"></textarea>
+    <p class="meta" id="fTest"></p>
+    <div class="row" style="justify-content:flex-end"><button type="button" class="ghost" id="fCancel">Cancel</button><button id="fSave">Add task</button></div>
+  </form>
+</dialog>
+</main>
+
+<script>
+// Each check: [label, regex, negate?]. Regexes run on the answer with fences/think tags stripped.
+const DATASET = [
+ {id:1, cat:"uv run", hits:293, prompt:"run server.py with uv", ref:"uv run server.py",
+  checks:[["uses uv run",/\buv run\b/],["targets server.py",/server\.py/]]},
+ {id:2, cat:"open file", hits:243, prompt:"open the video renders/video.mp4", ref:"open renders/video.mp4",
+  checks:[["uses macOS open",/(^|[;&|]\s*)open\s/m],["targets the file",/renders\/video\.mp4/],["no xdg-open",/xdg-open/,1]]},
+ {id:3, cat:"find by name", hits:203, prompt:"find any file with 'watch' in its name inside ~/lucas-notes", ref:'find ~/lucas-notes -iname "*watch*"',
+  checks:[["uses find/fd/mdfind",/\b(find|fd|mdfind)\b/],["searches the vault",/lucas-notes/],["matches 'watch'",/watch/i],["case-insensitive",/-iname|-i\b|--ignore-case|mdfind/]]},
+ {id:4, cat:"count files", hits:159, prompt:"how many markdown files are in my vault ~/lucas-notes?", ref:'find ~/lucas-notes -name "*.md" | wc -l',
+  checks:[["filters .md",/\.md\b/],["counts",/wc -l|--count|-c\b/],["targets vault",/lucas-notes/]]},
+ {id:5, cat:"ffmpeg join", hits:179, prompt:"give me the cmd that joins two clips a.mp4 and b.mp4 into out.mp4", ref:`ffmpeg -i a.mp4 -i b.mp4 -filter_complex "[0:v][0:a][1:v][1:a]concat=n=2:v=1:a=1[v][a]" -map "[v]" -map "[a]" out.mp4`,
+  checks:[["uses ffmpeg",/ffmpeg/],["uses concat",/concat/],["references both clips",/a\.mp4[\s\S]*b\.mp4|list\.txt|<\(/],["writes out.mp4",/out\.mp4/]]},
+ {id:6, cat:"ffmpeg extract audio", hits:179, prompt:"extract the audio from interview.mp4 as an mp3", ref:"ffmpeg -i interview.mp4 -vn -q:a 2 interview.mp3",
+  checks:[["uses ffmpeg",/ffmpeg/],["input interview.mp4",/-i\s+["']?interview\.mp4/],["mp3 output",/\.mp3\b/],["drops video",/-vn|-map\s+(0:)?a\b|libmp3lame/]]},
+ {id:7, cat:"ffmpeg trim", hits:179, prompt:"cut the first 30 seconds of talk.mp4 into clip.mp4", ref:"ffmpeg -i talk.mp4 -t 30 -c copy clip.mp4",
+  checks:[["uses ffmpeg",/ffmpeg/],["30s duration",/-t\s+(30|00:00:30)\b|-to\s+(30|0?0:00:30|0?0:30)\b/],["writes clip.mp4",/clip\.mp4/]]},
+ {id:8, cat:"ffmpeg compress", hits:179, prompt:"compress video.mp4 so it's a lot smaller for sharing", ref:"ffmpeg -i video.mp4 -vcodec libx264 -crf 28 -preset slow video-small.mp4",
+  checks:[["uses ffmpeg",/ffmpeg/],["lowers quality/bitrate/size",/-crf|-b:v|scale=|-vf\s+["']?scale/],["new output file",/\s(?!\S*\bvideo\.mp4\b)\S+\.(mp4|mkv|mov)["']?\s*$/m]]},
+ {id:9, cat:"ffmpeg loudness", hits:179, prompt:"my audio in voice.m4a is too quiet, normalize the loudness", ref:"ffmpeg -i voice.m4a -af loudnorm=I=-16:TP=-1.5:LRA=11 voice-normalized.m4a",
+  checks:[["uses ffmpeg/sox",/ffmpeg|\bsox\b/],["normalizes",/loudnorm|dynaudnorm|volume=|--norm|\bgain\b/],["targets voice.m4a",/voice\.m4a/]]},
+ {id:10, cat:"mkdir + copy", hits:159, prompt:"copy the assets folder into backup/, create backup if it doesn't exist", ref:"mkdir -p backup && cp -R assets backup/",
+  checks:[["creates dir safely",/mkdir -p|rsync|ditto/],["copies recursively",/cp -[a-zA-Z]*[rRa]|rsync|ditto/],["copies assets",/assets/]]},
+ {id:11, cat:"count lines", hits:159, prompt:"how many lines in notes.md?", ref:"wc -l notes.md",
+  checks:[["uses wc -l",/wc -l/],["targets notes.md",/notes\.md/]]},
+ {id:12, cat:"grep in files", hits:154, prompt:"which notes in ~/lucas-notes mention 'layers of memory'?", ref:'grep -ril "layers of memory" ~/lucas-notes --include="*.md"',
+  checks:[["uses grep/rg",/\b(grep|rg|ag)\b/],["exact phrase",/layers of memory/i],["recursive",/-[a-zA-Z]*r|\brg\b/],["lists file names",/-[a-zA-Z]*l\b|--files-with-matches/]]},
+ {id:13, cat:"port check", hits:146, prompt:"is anything running on port 8080?", ref:"lsof -i :8080",
+  checks:[["uses lsof/netstat/nc",/lsof|netstat|nc -z/],["port 8080",/8080/]]},
+ {id:14, cat:"api health check", hits:119, prompt:"check if ollama is up on localhost", ref:"curl -s http://localhost:11434/api/tags",
+  checks:[["hits ollama",/11434|ollama (list|ps)/]]},
+ {id:15, cat:"kill by port", hits:118, prompt:"kill the app running on port 3000", ref:"lsof -ti:3000 | xargs kill",
+  checks:[["finds pid by port",/lsof|fuser|kill-port/],["port 3000",/3000/],["kills",/kill/]]},
+ {id:16, cat:"kill by name", hits:90, prompt:"kill the python http.server I left running", ref:"pkill -f http.server",
+  checks:[["kills",/pkill|kill/],["matches http.server",/http\\?\.server/]]},
+ {id:17, cat:"ffprobe duration", hits:91, prompt:"how long is lecture.mp4? just give me the duration", ref:"ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 lecture.mp4",
+  checks:[["uses ffprobe/mediainfo/mdls",/ffprobe|mediainfo|mdls|ffmpeg -i/],["asks for duration",/duration/i],["targets lecture.mp4",/lecture\.mp4/]]},
+ {id:18, cat:"top processes", hits:90, prompt:"what's eating my CPU right now? show the top 10 processes", ref:"ps aux -r | head -n 11",
+  checks:[["uses ps/top",/\b(ps|top)\b/],["sorts or limits",/head|-n\s*10|-o\s*cpu|\s-r\b|sort/],["no GNU-only --sort",/--sort/,1]]},
+ {id:19, cat:"static server", hits:87, prompt:"serve this folder on port 8000", ref:"python3 -m http.server 8000",
+  checks:[["starts a server",/http\.server|npx serve|http-server/],["port 8000",/8000/]]},
+ {id:20, cat:"image convert", hits:75, prompt:"convert IMG_8735.HEIC to jpg", ref:"sips -s format jpeg IMG_8735.HEIC --out IMG_8735.jpg",
+  checks:[["uses sips/magick",/\bsips\b|magick|convert|heif-convert/],["input file",/IMG_8735\.HEIC/i],["jpg output",/\.jpe?g\b|format jpeg/i]]},
+ {id:21, cat:"osascript", hits:72, prompt:"pop up a mac notification saying 'Render done'", ref:`osascript -e 'display notification "Render done"'`,
+  checks:[["uses osascript",/osascript/],["display notification",/display notification/],["message text",/Render done/]]},
+ {id:22, cat:"disk usage", hits:54, prompt:"what are the 10 biggest folders in my Downloads?", ref:"du -sh ~/Downloads/* | sort -rh | head -10",
+  checks:[["uses du",/\bdu\b/],["targets Downloads",/Downloads/],["sorts by size",/sort -[a-zA-Z]*[hn]/],["top 10",/head(\s+-n)?\s*-?10\b/]]},
+ {id:23, cat:"delete files", hits:53, prompt:"delete all the .png files in this folder (not subfolders)", ref:"rm -- *.png",
+  checks:[["deletes",/\brm\b|-delete/],["only png",/\*\.png/],["not recursive",/\brm\s+-[a-zA-Z]*[rR]/,1],["respects 'not subfolders'",/^(?![\s\S]*\bfind\b)|maxdepth\s+1/]]},
+ {id:24, cat:"vercel", hits:44, prompt:"remove the vercel project quiz-app", ref:"vercel project rm quiz-app",
+  checks:[["vercel project rm",/vercel projects? (rm|remove)/],["targets quiz-app",/quiz-app/]]},
+ {id:25, cat:"yt-dlp", hits:42, prompt:"download this youtube video as mp4: https://www.youtube.com/watch?v=dQw4w9WgXcQ", ref:`yt-dlp -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4]" "https://www.youtube.com/watch?v=dQw4w9WgXcQ"`,
+  checks:[["uses yt-dlp",/yt-dlp|youtube-dl/],["has the URL",/dQw4w9WgXcQ/],["asks for mp4",/mp4/]]},
+];
+// Run on the raw answer for every item.
+const GLOBAL = [
+  ["bare command (no fences/prose)", /```|^`|^(here|this|to |you|the |note|sure|explanation)/im, 1],
+  ["≤ 3 lines", /(\n.*){3,}/, 1],
+  ["no sudo", /\bsudo\b/, 1],
+];
+
+const $ = s => document.querySelector(s);
+const KEY = "bash-vibe-check-v1";
+let state = {results:{}, verdicts:{}, custom:[]};   // results[model][id] = {out, ms, score, fails}; custom = user-added tasks
+try { Object.assign(state, JSON.parse(localStorage.getItem(KEY)) || {}); } catch {}
+// Custom tasks store regex sources as strings; hydrate them into the live dataset.
+const hydrate = c => ({...c, custom:true, checks: c.checks.map(([l, src, neg]) => [l, new RegExp(src, "i"), neg])});
+DATASET.push(...state.custom.map(hydrate));
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch {} };
+let models = [], stopFlag = false;
+
+const clean = s => s.replace(/<think>[\s\S]*?<\/think>/g, "").replace(/```[a-z]*\n?|```/g, "").trim();
+
+function evaluate(item, raw) {
+  const body = clean(raw), fails = [];
+  let total = 0, pass = 0;
+  for (const [label, re, neg] of item.checks) { total++; (re.test(body) !== !!neg) ? pass++ : fails.push(label); }
+  for (const [label, re, neg] of GLOBAL) { total++; (re.test(raw.trim()) !== !!neg) ? pass++ : fails.push(label); }
+  return {score: pass / total, fails, total};
+}
+
+async function ask(model, prompt) {
+  const t = performance.now();
+  const r = await fetch($("#host").value + "/api/chat", {method:"POST", body: JSON.stringify({
+    model, stream:false, think:false, options:{temperature: +$("#temp").value},
+    messages:[{role:"system", content: $("#sys").value}, {role:"user", content: prompt}]})});
+  if (!r.ok) throw new Error(`${r.status} ${await r.text()}`);
+  const j = await r.json();
+  return {out: j.message?.content ?? "", ms: Math.round(performance.now() - t)};
+}
+
+async function loadModels() {
+  $("#status").textContent = "loading models…";
+  try {
+    const j = await (await fetch($("#host").value + "/api/tags")).json();
+    models = j.models.map(m => m.name).filter(n => !/embed/.test(n));
+    const def = new Set(["gemma4:12b-mlx", "gemma4:latest", "qwen2.5-coder:7b"]);
+    $("#models").innerHTML = models.map(m =>
+      `<label class="chip"><input type="checkbox" value="${m}" ${def.has(m) || state.results[m] ? "checked" : ""}>${m}</label>`).join("");
+    $("#status").textContent = `${models.length} models`;
+  } catch (e) { $("#status").textContent = "Ollama not reachable: " + e.message; }
+}
+const selected = () => [...document.querySelectorAll("#models input:checked")].map(i => i.value);
+const shown = () => [...new Set([...selected(), ...Object.keys(state.results)])];
+const cls = s => s === 1 ? "s1" : s >= .6 ? "s2" : "s3";
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function render() {
+  // Re-score saved outputs with the current checks, so edits to checks never leave stale scores.
+  for (const m in state.results) for (const d of DATASET) {
+    const r = state.results[m][d.id];
+    if (r && !r.err) Object.assign(r, evaluate(d, r.out));
+  }
+  const ms = shown();
+  let h = `<tr><th>Task</th>${ms.map(m => `<th>${esc(m)}</th>`).join("")}</tr>`;
+  for (const it of DATASET) {
+    h += `<tr><td class="item"><div class="cat">#${it.id} · ${esc(it.cat)} · ${it.custom ? `<span class="tag">custom</span> <button class="link" data-del="${it.id}">remove</button>` : `${it.hits} log hits`}</div>${esc(it.prompt)}<div class="ref mono">ref: ${esc(it.ref)}</div></td>`;
+    for (const m of ms) {
+      const r = state.results[m]?.[it.id], v = state.verdicts[m]?.[it.id];
+      if (!r) { h += `<td class="meta">—</td>`; continue; }
+      if (r.err) { h += `<td><span class="badge s3">error</span><div class="meta">${esc(r.err)}</div></td>`; continue; }
+      h += `<td><pre>${esc(r.out || "(empty)")}</pre>
+        <div class="row" style="margin-top:4px;gap:6px"><span class="badge ${cls(r.score)}">${Math.round(r.score*100)}%</span>
+        <span class="meta">${r.ms} ms</span>
+        <span class="verdict"><button data-m="${esc(m)}" data-id="${it.id}" data-v="1" class="${v===1?"on":""}">👍</button>
+        <button data-m="${esc(m)}" data-id="${it.id}" data-v="0" class="${v===0?"on":""}">👎</button></span></div>
+        ${r.fails.length ? `<ul class="checks">${r.fails.map(f => `<li class="f">✗ ${esc(f)}</li>`).join("")}</ul>` : ""}</td>`;
+    }
+    h += "</tr>";
+  }
+  $("#tbl").innerHTML = h;
+  renderBoard(ms);
+}
+
+// Sequential blue ramp (light→dark = low→high); reversed in dark mode so low recedes into the surface.
+const RAMP = ["#cde2fb","#b7d3f6","#9ec5f4","#86b6ef","#6da7ec","#5598e7","#3987e5","#2a78d6","#256abf","#1c5cab","#184f95","#104281"];
+const dark = matchMedia("(prefers-color-scheme: dark)");
+const heatColor = s => (dark.matches ? [...RAMP].reverse() : RAMP)[Math.round(s * (RAMP.length - 1))];
+
+function renderBoard(ms) {
+  const rows = ms.filter(m => state.results[m]).map(m => {
+    const rs = DATASET.map(d => state.results[m][d.id]).filter(r => r && !r.err), n = rs.length;
+    const vs = Object.values(state.verdicts[m] || {}).filter(v => v !== undefined);
+    return {m, n, avg: n ? rs.reduce((a, r) => a + r.score, 0) / n : 0,
+      full: rs.filter(r => r.score === 1).length, lat: n ? Math.round(rs.reduce((a, r) => a + r.ms, 0) / n) : 0,
+      up: vs.filter(v => v === 1).length, nv: vs.length};
+  }).sort((a, b) => b.full - a.full || b.avg - a.avg);   // fully correct first, partial credit breaks ties
+  if (!rows.length) { $("#board").innerHTML = `<span class="meta">No results yet.</span>`; return; }
+  const tipOf = r => `<b class="mono">${esc(r.m)}</b><br>avg score ${Math.round(r.avg*100)}% over ${r.n}/${DATASET.length} tasks<br>${r.full} fully correct · ${r.lat} ms avg${r.nv ? `<br>👍 ${r.up}/${r.nv} by you` : ""}`;
+  let h = `<div class="meta">Ranked by fully correct (✓), then by average check score (partial credit on misses)</div><div class="bars">` + rows.map(r =>
+    `<span class="mono" data-tip="${esc(tipOf(r))}">${esc(r.m)}</span>
+     <div class="track" data-tip="${esc(tipOf(r))}"><i style="width:${r.avg*100}%"></i></div>
+     <span class="val">${Math.round(r.avg*100)}% <span class="meta">· ${r.full}/${DATASET.length} ✓</span></span>`).join("") + `</div>`;
+  h += `<div class="meta">Score per task (hover a cell)</div>
+    <div class="heat" style="grid-template-columns:max-content repeat(${DATASET.length},minmax(18px,1fr))">
+    <span></span>${DATASET.map(d => `<span class="h" data-tip="${esc(`#${d.id} ${d.cat}<br>${esc(d.prompt)}`)}">${d.id}</span>`).join("")}`;
+  for (const r of rows) {
+    h += `<span class="mono" style="padding-right:8px">${esc(r.m)}</span>`;
+    for (const d of DATASET) {
+      const x = state.results[r.m][d.id];
+      if (!x) { h += `<span></span>`; continue; }
+      if (x.err) { h += `<span class="c err" data-tip="${esc(`<b>#${d.id} ${d.cat}</b><br>error: ${esc(x.err)}`)}"></span>`; continue; }
+      const tip = `<b>#${d.id} ${esc(d.cat)} · ${Math.round(x.score*100)}%</b><br><code>${esc(clean(x.out).slice(0, 160))}</code>` +
+        (x.fails.length ? `<br>✗ ${x.fails.map(esc).join("<br>✗ ")}` : "");
+      h += `<span class="c" style="background:${heatColor(x.score)};color:${dark.matches ? "#0b0b0b" : "#fff"}" data-tip="${esc(tip)}">${x.score === 1 ? "✓" : ""}</span>`;
+    }
+  }
+  h += `</div><div class="legend">0%${[0, .25, .5, .75, 1].map(s => `<i style="background:${heatColor(s)}"></i>`).join("")}100%
+    <i class="c err" style="background:repeating-linear-gradient(45deg,var(--track) 0 3px,var(--muted) 3px 4px);margin-left:10px"></i>error</div>`;
+  $("#board").innerHTML = h;
+}
+$("#board").onmousemove = e => {
+  const t = e.target.closest("[data-tip]"), tip = $("#tip");
+  if (!t) { tip.style.display = "none"; return; }
+  tip.innerHTML = t.dataset.tip; tip.style.display = "block";
+  const x = Math.min(e.clientX + 14, innerWidth - tip.offsetWidth - 8), y = e.clientY + 14 + tip.offsetHeight > innerHeight ? e.clientY - tip.offsetHeight - 10 : e.clientY + 14;
+  tip.style.left = x + "px"; tip.style.top = y + "px";
+};
+$("#board").onmouseleave = () => { $("#tip").style.display = "none"; };
+dark.onchange = render;
+
+$("#run").onclick = async () => {
+  const ms = selected(); if (!ms.length) return alert("Pick at least one model.");
+  stopFlag = false; $("#board").scrollIntoView({behavior:"smooth", block:"center"}); $("#run").disabled = true; $("#stop").disabled = false;
+  // Model-outer loop so Ollama keeps one model loaded at a time.
+  for (const m of ms) {
+    state.results[m] = {};
+    for (const it of DATASET) {
+      if (stopFlag) break;
+      $("#status").textContent = `${m} · #${it.id}/${DATASET.length}`;
+      try { const r = await ask(m, it.prompt); state.results[m][it.id] = {...r, ...evaluate(it, r.out)}; }
+      catch (e) { state.results[m][it.id] = {err: e.message}; }
+      save(); render();
+    }
+  }
+  $("#status").textContent = stopFlag ? "stopped" : "done";
+  $("#run").disabled = false; $("#stop").disabled = true;
+};
+$("#stop").onclick = () => { stopFlag = true; };
+$("#clear").onclick = () => { state = {results:{}, verdicts:{}, custom: state.custom}; save(); render(); };
+$("#reload").onclick = loadModels;
+$("#models").onchange = render;
+$("#tbl").onclick = e => {
+  const b = e.target.closest(".verdict button"); if (!b) return;
+  const {m, id} = b.dataset, v = +b.dataset.v;
+  state.verdicts[m] ??= {};
+  state.verdicts[m][id] = state.verdicts[m][id] === v ? undefined : v;
+  save(); render();
+};
+$("#send").onclick = async () => {
+  const p = $("#ask").value.trim(); if (!p) return;
+  const ms = selected(); $("#askOut").innerHTML = "";
+  for (const m of ms) {
+    const div = document.createElement("div");
+    div.innerHTML = `<div class="meta mono">${esc(m)} …</div>`;
+    $("#askOut").append(div);
+    try { const r = await ask(m, p); div.innerHTML = `<div class="row" style="justify-content:space-between"><span class="meta mono">${esc(m)} · ${r.ms} ms</span><button class="link">+ Add to dataset</button></div><pre>${esc(r.out)}</pre>`;
+      div.querySelector("button").onclick = () => openAdd(p, clean(r.out)); }
+    catch (e) { div.innerHTML = `<div class="meta mono">${esc(m)}</div><pre>${esc(e.message)}</pre>`; }
+  }
+};
+$("#tbl").addEventListener("click", e => {
+  const id = +e.target.dataset?.del; if (!id) return;
+  if (!confirm("Remove this custom task?")) return;
+  state.custom = state.custom.filter(c => c.id !== id);
+  DATASET.splice(DATASET.findIndex(d => d.id === id), 1);
+  for (const m in state.results) delete state.results[m][id];
+  for (const m in state.verdicts) delete state.verdicts[m][id];
+  save(); render();
+});
+
+const reEsc = s => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+// Suggest checks: the tool the reference starts with, plus filenames/paths/numbers from the prompt that the reference reuses.
+function suggestChecks(prompt, ref) {
+  const lines = [], tool = ref.replace(/^(cd \S+\s*&&\s*|sudo\s+)/, "").split(/\s+/)[0];
+  if (tool) lines.push(`uses ${tool} | \\b${reEsc(tool)}\\b`);
+  const toks = prompt.match(/~?\/?[\w.\/-]*\.[a-z0-9]{1,5}\b|~\/[\w\/.-]+|\b\d{2,}\b/gi) || [];
+  for (const t of new Set(toks)) if (ref.includes(t) && t !== tool) lines.push(`mentions ${t} | ${reEsc(t)}`);
+  return lines.join("\n");
+}
+function parseChecks(text) {
+  return text.split("\n").map(l => l.trim()).filter(Boolean).map(l => {
+    const i = l.indexOf("|"); if (i < 0) throw new Error(`Missing "|" in: ${l}`);
+    let label = l.slice(0, i).trim(), src = l.slice(i + 1).trim(), neg = 0;
+    if (label.startsWith("!")) { neg = 1; label = label.slice(1).trim(); }
+    new RegExp(src, "i");   // throws on a bad regex
+    return [label, src, neg];
+  });
+}
+function openAdd(prompt, ref) {
+  $("#fPrompt").value = prompt; $("#fRef").value = ref; $("#fCat").value = "custom";
+  $("#fChecks").value = suggestChecks(prompt, ref); testForm(); $("#addDlg").showModal();
+}
+// Live preview: the reference must pass its own checks, otherwise the task is broken.
+function testForm() {
+  try {
+    const checks = parseChecks($("#fChecks").value);
+    if (!checks.length) { $("#fTest").textContent = "Add at least one check."; return false; }
+    const r = evaluate(hydrate({checks}), $("#fRef").value);
+    $("#fTest").textContent = r.fails.length ? `Reference fails: ${r.fails.join(", ")}` : `Reference passes all ${r.total} checks.`;
+    return !r.fails.length;
+  } catch (e) { $("#fTest").textContent = e.message; return false; }
+}
+$("#fChecks").oninput = $("#fRef").oninput = testForm;
+$("#fCancel").onclick = () => $("#addDlg").close();
+$("#addForm").onsubmit = e => {
+  if (!testForm()) { e.preventDefault(); return; }
+  const c = {id: Math.max(...DATASET.map(d => d.id)) + 1, cat: $("#fCat").value.trim() || "custom", hits: 0,
+    prompt: $("#fPrompt").value.trim(), ref: $("#fRef").value.trim(), checks: parseChecks($("#fChecks").value)};
+  state.custom.push(c); DATASET.push(hydrate(c)); save(); render();
+};
+
+$("#ask").onkeydown = e => { if (e.key === "Enter") $("#send").click(); };
+const download = (name, obj) => { const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(obj, null, 2)], {type:"application/json"})); a.download = name; a.click(); };
+$("#dlData").onclick = () => download("bash-vibe-check-dataset.json",
+  DATASET.map(d => ({...d, custom: !!d.custom, checks: d.checks.map(([label, re, neg]) => ({label, regex: re.source, flags: re.flags, negate: !!neg}))})));
+$("#dlRes").onclick = () => download("bash-vibe-check-results.json", state);
+
+render(); loadModels();
+</script>
+</body>
+</html>
